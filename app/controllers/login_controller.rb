@@ -9,8 +9,10 @@ class LoginController < ApplicationController
   
   def create
     @user = User.find_by(email: params[:login][:email].downcase)
+    # password_equal = @user.password == params[:login][:password] 
     # if user && user.authenticate(params[:login][:password])
-    if @user.present?
+    #if @user.present?
+    if @user.password == params[:login][:password] 
     #   log_in @user
     #   params[:login][:remember_me] == '1' ? remember(@user) : nil #forget(@user)
       redirect_to @user
