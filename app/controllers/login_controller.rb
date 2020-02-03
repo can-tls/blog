@@ -13,7 +13,7 @@ class LoginController < ApplicationController
     # if user && user.authenticate(params[:login][:password])
     #if @user.present?
     if @user.password == params[:login][:password] 
-    #   log_in @user
+       log_in @user
     #   params[:login][:remember_me] == '1' ? remember(@user) : nil #forget(@user)
       redirect_to @user
       
@@ -25,6 +25,11 @@ class LoginController < ApplicationController
     end
   end
 
+  def destroy
+    log_out if logged_in?
+    redirect_to root_url
+  end
+  
   private 
 
   def login_params
