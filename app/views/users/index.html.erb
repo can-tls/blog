@@ -2,7 +2,7 @@
 
   <div class="row">
     <section class="user_info">
-      <li>
+      <ul class="index">
         <% @users = User.all %>
         <% @users.each do |user| %>
           <%= user.name %><br/>
@@ -10,6 +10,6 @@
           <%= gravatar_for user %><br/>
           <%= link_to "delete user", user_path(user), method: :delete, class: "btn btn-lg btn-primary" %>
         <% end %>
-      </li>
+      </ul>
     </section>
 </div>

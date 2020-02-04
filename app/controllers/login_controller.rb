@@ -12,10 +12,10 @@ class LoginController < ApplicationController
     # password_equal = @user.password == params[:login][:password] 
     # if user && user.authenticate(params[:login][:password])
     #if @user.present?
-    if @user.password == params[:login][:password] 
+    if @user.password == params[:login][:password]
        log_in @user
     #   params[:login][:remember_me] == '1' ? remember(@user) : nil #forget(@user)
-      redirect_to @user
+       redirect_to @user
       
       # Log the user in and redirect to the user's show page.
     else
