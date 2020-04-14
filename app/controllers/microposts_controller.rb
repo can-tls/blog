@@ -1,7 +1,7 @@
 class MicropostsController < ApplicationController
     before_action :current_user, only: [:create, :destroy]
   
-    def create
+    def create    
       @micropost = current_user.microposts.build(micropost_params)
       if @micropost.save
         flash[:success] = "Micropost created!"
@@ -15,14 +15,17 @@ class MicropostsController < ApplicationController
     end
 
     def show
-        @microposts = @user.microposts.paginate(page: params[:page])
-        #@micropost = Micropost.find_by(index)
+      @micropost = Micropost.find(micropost["id"])
     end
   
     private
   
       def micropost_params
         params.require(:micropost).permit(:titel, :content)
+      end
+
+      def micropost
+        params.permit(:id)
       end
   end
   

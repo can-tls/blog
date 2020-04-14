@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-# def hi
-#   def '/show'
-#     User/idd
-#     def idd
-#         User.find(params[:id])
-#       def user_params
-#         params.require(:user).permit(:name, :email, :password) #confirmation entfernt
-#       end
-#     end
-#   end
-#  def
   root 'static_pages#home'
   post '/signup',  to: 'users#create'
   get  '/signup',  to: 'users#new'
