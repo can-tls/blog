@@ -17,6 +17,7 @@
         <%= link_to micropost do %>
             <b><%= "Datum:" %></b>
             <%= micropost.created_at.strftime("%D") %><br>
+            <%= micropost.titel %>
             <%= sanitize(truncate(micropost.content, length: 20)) %>
         <% end %>
     </p>

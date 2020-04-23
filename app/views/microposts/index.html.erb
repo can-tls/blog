@@ -6,7 +6,10 @@
     <%= link_to "sort by author", microposts_path(:sort => "user_id"), :class=> "btn btn-primary btn-sm active", :role=> "button"  %>
     <%= link_to "sort by publish", microposts_path(:sort => "created_at"), :class=> "btn btn-primary btn-sm active", :role=> "button" %>
     <%= link_to "sort by update ", microposts_path(:sort => "updated_at"), :class=> "btn btn-primary btn-sm active", :role=> "button"  %>
-    </div>
+</div>
+<br>
+<br>
+<br>
 </div>
     <% @microposts.each do |micropost| %>
         <%= gravatar_for micropost.user %>

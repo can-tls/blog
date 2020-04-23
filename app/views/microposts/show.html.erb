@@ -1,4 +1,9 @@
+<%= @micropost.titel %>
 <%= @micropost.content %>
+<h2> <%= @micropost.comments.count %> Comments</h2>
+     <%= render @micropost.comments %>
+     <h3> Add a Comment: </h3>
+     <%= render 'comments/form' %>
 <% if micropost_from_current_user?(@micropost) %>
     <%= link_to "edit", edit_micropost_path %>
     <%= link_to "delete", micropost_path, method: :delete %>
