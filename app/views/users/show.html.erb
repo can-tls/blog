@@ -1,13 +1,23 @@
 <%= provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-      <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+      <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
 </div>
-<h3>created at:</h3> <%= @user.created_at %>
+<h3>created at:</h3> <%= @user.created_at %>
+<br>
+<br>
+<% @microposts.each do |micropost| %>
+    <p>
+        <%= link_to micropost do %>
+            <b><%= "Datum:" %></b>
+            <%= micropost.created_at.strftime("%D") %><br>
+            <%= sanitize(truncate(micropost.content, length: 20)) %>
+        <% end %>
+    </p>
+<% end %>

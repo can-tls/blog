@@ -1,2 +1,5 @@
 <%= @micropost.content %>
-
+<% if micropost_from_current_user?(@micropost) %>
+    <%= link_to "edit", edit_micropost_path %>
+    <%= link_to "delete", micropost_path, method: :delete %>
+<% end %>

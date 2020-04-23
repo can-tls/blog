@@ -1,15 +1,19 @@
 class UsersController < ApplicationController
 
     def show
-        @user = User.find(params[:id])
-        @microposts = @user.microposts.paginate(page: params[:page])
-    end #no idea about paginate
+      @user = User.find(params[:id])
+      @microposts = @user.microposts
+    #  @microposts = Micropost.all
+    #  @micropost = Micropost.find(params[:user_id])
+    #  @micropost = @user.post
+    end
 
     def new
         @user = User.new
     end
 
     def index
+      @users = User.all
     end
 
     def create
@@ -49,6 +53,14 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation) #confirmation entfernt
+    end
+
+    def post_params
+      params.require(:micropost).permit(:content, :titel, :user_id, :id, :created_at, :updated_at)
+    end
+
+    def micropost
+      params.permit(:id, :user_id)
     end
 
     def logged_in_user

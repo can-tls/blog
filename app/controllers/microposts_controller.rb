@@ -10,22 +10,55 @@ class MicropostsController < ApplicationController
         render 'static_pages/home'
       end
     end
-  
-    def destroy
+
+    def new
+      @micropost = current_user.microposts.build if logged_in?
     end
 
     def show
       @micropost = Micropost.find(micropost["id"])
     end
+
+    def index 
+      sort = params[:sort]
+      @microposts = Micropost.all.order(sort)
+    end
+
+    def edit
+      @micropost = Micropost.find(micropost["id"])
+    end
   
+    def update
+      @micropost = Micropost.find(micropost["id"])
+      if @micropost.update_attributes(micropost_params)
+        flash[:success] = "Post updated"
+        redirect_to @micropost
+      else
+        render 'edit' 
+      end
+    end
+
+    def destroy
+      @micropost = Micropost.find(params["id"])
+      @micropost.destroy
+      redirect_to '/all'
+    end
+
     private
+      def user_params
+        params.require(:user).permit(:id, :name, :email, :password, :password_confirmation) #confirmation entfernt
+      end
+
+      def sorting
+        params.require(:sort)
+      end
   
       def micropost_params
-        params.require(:micropost).permit(:titel, :content)
+        params.require(:micropost).permit(:titel, :content, :id, :user_id)
       end
 
       def micropost
-        params.permit(:id)
+        params.permit(:id, :content, :titel, :user_id)
       end
   end
   

@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   get '/login', to: 'login#new'
   post '/login', to: 'login#create'
   delete '/logout', to: 'login#destroy'
-  resources :microposts,          only: [:create, :destroy, :show]
+  resources :microposts
   resources :users
 end
