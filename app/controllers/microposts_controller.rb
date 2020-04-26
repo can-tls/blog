@@ -60,5 +60,6 @@ class MicropostsController < ApplicationController
       def micropost
         params.permit(:id, :content, :titel, :user_id)
       end
+
   end
   
