@@ -1,7 +1,7 @@
-<%= @micropost.titel %><br>
-<%= @micropost.content %>
-<br>
-<br>
+<p>
+    <h4><%= @micropost.titel %></h4><br>
+    <%= @micropost.content %><hr/>
+</p>
 <%= render @micropost.comments %>
 <h3> Add a Comment: </h3>
 <%= render 'comments/form' %>

@@ -19,13 +19,14 @@ class MicropostsController < ApplicationController
       @micropost = Micropost.find(micropost["id"])
     end
 
-    def index 
+    def index
       sort = params[:sort]
       @microposts = Micropost.all.order(sort)
     end
 
     def edit
       @micropost = Micropost.find(micropost["id"])
+      @tag = @micropost.tag
     end
   
     def update
@@ -49,16 +50,20 @@ class MicropostsController < ApplicationController
         params.require(:user).permit(:id, :name, :email, :password, :password_confirmation) #confirmation entfernt
       end
 
+      def tag_params
+        params.require(:tag).permit(:name)
+      end
+
       def sorting
         params.require(:sort)
       end
   
       def micropost_params
-        params.require(:micropost).permit(:titel, :content, :id, :user_id)
+        params.require(:micropost).permit(:titel, :content, :id, :user_id, :tags)
       end
 
       def micropost
-        params.permit(:id, :content, :titel, :user_id)
+        params.permit(:id, :content, :titel, :user_id) #brauch ich das?
       end
 
   end

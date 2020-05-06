@@ -12,12 +12,12 @@
 <h3>created at:</h3> <%= @user.created_at %>
 <br>
 <br>
-<% @microposts.each do |micropost| %>
+<% @microposts.each do |micropost| %><hr/>
     <p>
+    <b><%= "Datum:" %></b>
+    <%= micropost.created_at.strftime("%D") %><br>
         <%= link_to micropost do %>
-            <b><%= "Datum:" %></b>
-            <%= micropost.created_at.strftime("%D") %><br>
-            <%= micropost.titel %>
+            <%= micropost.titel %><br>
             <%= sanitize(truncate(micropost.content, length: 20)) %>
         <% end %>
     </p>

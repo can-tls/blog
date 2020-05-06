@@ -1,41 +1,48 @@
-<div class="row">
-    <div class="col-md-0">
+<p>
+    <div class="row">
+        <div class="col-md-0">
+        </div>
+        <div class="col-md-12">
+            <%= link_to "sort by author", microposts_path(:sort => "user_id"), :class=> "btn btn-primary btn-sm active" %>
+            <%= link_to "sort by publish", microposts_path(:sort => "created_at DESC"), :class=> "btn btn-primary btn-sm active" %>
+            <%= link_to "sort by update ", microposts_path(:sort => "updated_at DESC"), :class=> "btn btn-primary btn-sm active" %>
+        </div>
     </div>
-    <div class="col-md-12">
-        <%= link_to "sort by author", microposts_path(:sort => "user_id"), :class=> "btn btn-primary btn-sm active", :role=> "button"  %>
-        <%= link_to "sort by publish", microposts_path(:sort => "created_at"), :class=> "btn btn-primary btn-sm active", :role=> "button" %>
-        <%= link_to "sort by update ", microposts_path(:sort => "updated_at"), :class=> "btn btn-primary btn-sm active", :role=> "button"  %>
-    </div>
-</div>
-<br>
-<br>
-<br>
+</p>
 <% @microposts.each do |micropost| %>
+<div class="panel panel-default">
+<div class="panel-body">
     <%= gravatar_for micropost.user %>
     <div class="col-md-6">
         <%= link_to micropost.user do %>
-            <%= micropost.user.name %><br>
+            <div class="black-link">
+                <%= micropost.user.name %>
+            </div>
         <% end %>
     </div>
     <%= link_to micropost do %>
     <div class="row">
-        <div class="col-sm-6">
-            <%= micropost.titel %><br>
-            <%= micropost.content %><br>
-            <% if micropost_from_current_user?(micropost) %>
+        <div class="col-sm-6"><hr/>
+            <h3><%= micropost.titel %></h3><hr/>
+            <h4><%= sanitize(truncate(micropost.content, length: 20)) %></h4>
+            <% if micropost_from_current_user?(micropost) %><hr/>
                 <%= link_to "edit", edit_micropost_path(micropost) %>
                 <%= link_to "delete", micropost_path(micropost), method: :delete %>
             <% end %>
         </div>
-    </div>
-    <% end %>
+        </div>
+</div>
+</div>
+<% end %>
     <p>
+        <h4>Kommentare:</h4>
         <%= render micropost.comments.first %>
     </p>
 <% end %>
-<hr/>
-<% @microposts.each do |micropost| %>
-    <%= link_to micropost do %>
-            <%= render micropost.comments %>
+<% @microposts.each do |micropost| %><hr/>
+    <% micropost.comments.each do |comment| %>
+    <p><%= link_to micropost_path(comment.micropost) do %></p>
+            <%= render comment %>
+        <% end %>
     <% end %>
 <% end %>
