@@ -17,25 +17,29 @@ class MicropostsController < ApplicationController
 
     def show
       @micropost = Micropost.find(micropost["id"])
+      @tags = @micropost.tags
     end
 
     def index
       sort = params[:sort]
       @microposts = Micropost.all.order(sort)
+      @tags = Tag.all
     end
 
     def edit
       @micropost = Micropost.find(micropost["id"])
-      @tag = @micropost.tag
+      @microposts = Micropost.all
+      @tags = Tag.all
     end
   
     def update
       @micropost = Micropost.find(micropost["id"])
+      @micropost.tags << Tag.find(update_tags)
       if @micropost.update_attributes(micropost_params)
         flash[:success] = "Post updated"
         redirect_to @micropost
       else
-        render 'edit' 
+        render 'edit'
       end
     end
 
@@ -50,16 +54,20 @@ class MicropostsController < ApplicationController
         params.require(:user).permit(:id, :name, :email, :password, :password_confirmation) #confirmation entfernt
       end
 
-      def tag_params
-        params.require(:tag).permit(:name)
-      end
-
       def sorting
         params.require(:sort)
       end
+
+      def update_tags
+        params.require(:tag)
+      end
+
+      def tag_params
+        params.require(:tag).permit(:name, :id, :created_at, :updated_at, :micropost_id)
+      end
   
       def micropost_params
-        params.require(:micropost).permit(:titel, :content, :id, :user_id, :tags)
+        params.require(:micropost).permit(:titel, :content, :id, :user_id, :tag_id)
       end
 
       def micropost

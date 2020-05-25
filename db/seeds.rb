@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+burger=Tag.create(name:"Burger",micropost_id:"1")
+pizza=Tag.create(name:"Pizza",micropost_id:"2")
+pommes=Tag.create(name:"Pommes",micropost_id:"3")

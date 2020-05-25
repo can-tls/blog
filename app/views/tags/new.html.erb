@@ -1,0 +1,9 @@
+<%= form_for(@tag) do |f| %>
+    <div class="field">
+      <%= f.text_area :name %>
+    </div>
+    <div class="field">
+      <%= f.text_area :micropost_id %>
+    </div>
+    <%= f.submit "Set", class: "btn btn-primary" %>
+  <% end %>

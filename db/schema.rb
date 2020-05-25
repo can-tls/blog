@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_084319) do
+ActiveRecord::Schema.define(version: 2020_05_13_124522) do
 
   create_table "comments", force: :cascade do |t|
     t.string "name"
@@ -22,24 +22,46 @@ ActiveRecord::Schema.define(version: 2020_04_23_084319) do
   end
 
   create_table "microposts", force: :cascade do |t|
+    t.string "titel"
     t.text "content"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "titel"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "tag_id"
+    t.index ["tag_id"], name: "index_microposts_on_tag_id"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "micropost_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["micropost_id"], name: "index_taggings_on_micropost_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "micropost_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["micropost_id"], name: "index_tags_on_micropost_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password"
-    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "comments", "microposts"
+  add_foreign_key "microposts", "tags"
   add_foreign_key "microposts", "users"
+  add_foreign_key "taggings", "microposts"
+  add_foreign_key "taggings", "tags"
+  add_foreign_key "tags", "microposts"
 end

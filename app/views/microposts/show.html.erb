@@ -3,6 +3,9 @@
     <%= @micropost.content %><hr/>
 </p>
 <%= render @micropost.comments %>
+<% @tags.each do |t| %>
+    <%= t.name %>
+<% end %>
 <h3> Add a Comment: </h3>
 <%= render 'comments/form' %>
 <% if micropost_from_current_user?(@micropost) %>

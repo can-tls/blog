@@ -4,7 +4,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home",   root_path %></li>
         <li><%= link_to "Posts",  microposts_path %></li>
-        <li><%= link_to "Help",   help_path %></li>
+        <li><%= link_to "Tags",   tags_path %></li>
         <% if logged_in? %>
           <li><%= link_to "Users", all_path %></li>
           <li class="dropdown">
@@ -22,6 +22,7 @@
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %> 
+        <li><%= link_to "Help",   help_path %></li>
       </ul>
     </nav>
   </div>

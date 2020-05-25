@@ -3,9 +3,6 @@ class UsersController < ApplicationController
     def show
       @user = User.find(params[:id])
       @microposts = @user.microposts
-    #  @microposts = Micropost.all
-    #  @micropost = Micropost.find(params[:user_id])
-    #  @micropost = @user.post
     end
 
     def new

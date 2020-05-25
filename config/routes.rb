@@ -18,4 +18,5 @@ Rails.application.routes.draw do
     resources :comments   #nested route
   end
   resources :users
+  resources :tags
 end
