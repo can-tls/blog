@@ -50,20 +50,12 @@ class MicropostsController < ApplicationController
     end
 
     private
-      def user_params
-        params.require(:user).permit(:id, :name, :email, :password, :password_confirmation) #confirmation entfernt
-      end
-
       def sorting
         params.require(:sort)
       end
 
       def update_tags
         params.require(:tag)
-      end
-
-      def tag_params
-        params.require(:tag).permit(:name, :id, :created_at, :updated_at, :micropost_id)
       end
   
       def micropost_params

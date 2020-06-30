@@ -52,14 +52,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation) #confirmation entfernt
     end
 
-    def post_params
-      params.require(:micropost).permit(:content, :titel, :user_id, :id, :created_at, :updated_at)
-    end
-
-    def micropost
-      params.permit(:id, :user_id)
-    end
-
     def logged_in_user
         unless logged_in?
           flash[:danger] = "Please log in."

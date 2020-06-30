@@ -27,8 +27,4 @@ class TagsController < ApplicationController
     def tag_params
         params.require(:tag).permit(:name, :id, :created_at, :updated_at, :micropost_id)
     end
-
-    def tags
-        params.permit(:id, :name, :micropost_id)
-    end
 end
