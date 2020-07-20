@@ -6,7 +6,7 @@ require "benchmark/ips"
 TIME    = (ENV["BENCHMARK_TIME"] || 20).to_i
 RECORDS = (ENV["BENCHMARK_RECORDS"] || TIME * 1000).to_i
 
-conn = { adapter: "sqlite3", database: ":memory:" }
+conn = { adapter: "postgresql", database: ":memory:" }
 
 ActiveRecord::Base.establish_connection(conn)
 
