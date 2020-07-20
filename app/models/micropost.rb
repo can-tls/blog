@@ -1,6 +1,6 @@
 class Micropost < ApplicationRecord
   has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings
+  has_many :tags, -> { distinct }, through: :taggings
   belongs_to :user
   has_many :comments, dependent: :destroy
   validates :user_id, presence: true

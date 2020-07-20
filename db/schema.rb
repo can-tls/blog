@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2020_05_13_124522) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.string "name"
     t.text "body"
-    t.integer "micropost_id", null: false
+    t.bigint "micropost_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["micropost_id"], name: "index_comments_on_micropost_id"
@@ -24,18 +27,18 @@ ActiveRecord::Schema.define(version: 2020_05_13_124522) do
   create_table "microposts", force: :cascade do |t|
     t.string "titel"
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "tag_id"
+    t.bigint "tag_id"
     t.index ["tag_id"], name: "index_microposts_on_tag_id"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.integer "micropost_id"
-    t.integer "tag_id"
+    t.bigint "micropost_id"
+    t.bigint "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["micropost_id"], name: "index_taggings_on_micropost_id"
@@ -44,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_124522) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
-    t.integer "micropost_id"
+    t.bigint "micropost_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["micropost_id"], name: "index_tags_on_micropost_id"
