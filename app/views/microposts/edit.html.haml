@@ -1,0 +1,10 @@
+%section.micropost_form
+  = form_for(@micropost) do |f|
+    - @tags.each do |tag|
+      = check_box_tag 'tag[]', tag.id, checked = @micropost.tags.include?(tag)
+      = h tag.name
+    .field
+      = f.text_area :titel, placeholder: "title..."
+    .field
+      = f.text_area :content, placeholder: "Compose new micropost..."
+    = f.submit "Update", class: "btn btn-primary"

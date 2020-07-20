@@ -1,0 +1,9 @@
+.row
+  .col-sm-8
+    = comment.name
+    %br/
+    = comment.body
+  .col-sm-4
+    %br/
+    = time_ago_in_words(comment.created_at)
+%p= link_to "Delete", [comment.micropost,comment], method: :delete

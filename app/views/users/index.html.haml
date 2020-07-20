@@ -1,0 +1,12 @@
+- provide(:title, "All Users")
+- @users.each do |user|
+  .panel.panel-default
+    .panel-body
+      .row
+        %ul.col-sm-11
+          = gravatar_for user
+          = link_to user do
+            = user.name
+          %hr/
+          = user.email
+        = link_to "delete user", user_path(user), method: :delete, class: "btn btn-sm btn-primary"

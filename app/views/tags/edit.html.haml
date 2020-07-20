@@ -1,0 +1,5 @@
+%section.tag_form
+  = form_for(@tag) do |f|
+    .field
+      = f.text_area :name, placeholder: "Compose new hashtag..."
+    = f.submit "Update", class: "btn btn-primary"
