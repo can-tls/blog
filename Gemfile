@@ -12,7 +12,6 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rubocop-faker', '~> 0.2.0'
 gem 'rspec-rails', '~> 4.0.0.beta4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
