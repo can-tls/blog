@@ -13,6 +13,8 @@ gem 'rubocop-faker', '~> 0.2.0'
 gem 'rspec-rails', '~> 4.0.0.beta4'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
+# Use Puma Webserver
+gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
