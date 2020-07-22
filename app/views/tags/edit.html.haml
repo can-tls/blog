@@ -3,3 +3,4 @@
     .field
       = f.text_area :name, placeholder: "Compose new hashtag..."
     = f.submit "Update", class: "btn btn-primary"
+= link_to "delete", tag_path(@tag), method: :delete
