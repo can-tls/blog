@@ -1,0 +1,35 @@
+%p
+.row
+  .col-md-0
+  .col-md-12
+    = link_to "sort by author", microposts_path(:sort => "user_id"), :class=> "btn btn-primary btn-sm active"
+    = link_to "sort by publish", microposts_path(:sort => "created_at DESC"), :class=> "btn btn-primary btn-sm active"
+    = link_to "sort by update ", microposts_path(:sort => "updated_at DESC"), :class=> "btn btn-primary btn-sm active"
+- @microposts.each do |micropost|
+  .panel.panel-default
+    .panel-body
+      = gravatar_for micropost.user
+      .col-md-6
+        = link_to micropost.user do
+          .black-link
+            = micropost.user.name
+      = link_to micropost do
+        .row
+          .col-sm-6
+            %hr/
+            %h3= micropost.titel
+            %hr/
+            %h4= sanitize(truncate(micropost.content, length: 20))
+            - if micropost_from_current_user?(micropost)
+              %hr/
+              = link_to "edit", edit_micropost_path(micropost)
+              = link_to "delete", micropost_path(micropost), method: :delete
+  %p
+  %h4 Kommentare:
+  - if micropost.comments.present?
+    = micropost.comments.first.body
+- @microposts.each do |micropost|
+  %hr/
+  - micropost.comments.each do |comment|
+    = link_to micropost_path(comment.micropost) do
+      = render comment

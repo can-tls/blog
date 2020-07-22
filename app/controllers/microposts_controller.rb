@@ -33,14 +33,12 @@ class MicropostsController < ApplicationController
     end
   
     def update
+      @microposts = Micropost.all
       @micropost = Micropost.find(micropost["id"])
-      @micropost.tags << Tag.find(update_tags)
-      if @micropost.update_attributes(micropost_params)
-        flash[:success] = "Post updated"
-        redirect_to @micropost
-      else
-        render 'edit'
-      end
+      @tags = Tag.all
+      @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
+      redirect_to @micropost
+      flash[:success] = "Post updated"
     end
 
     def destroy
@@ -55,7 +53,11 @@ class MicropostsController < ApplicationController
       end
 
       def update_tags
-        params.require(:tag)
+        if params[:tag].present?
+          params.require(:tag)
+        else
+          []
+        end
       end
   
       def micropost_params

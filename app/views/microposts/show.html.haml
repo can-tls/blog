@@ -1,0 +1,13 @@
+%p
+%h4= @micropost.titel
+%br/
+= @micropost.content
+%hr/
+= render @micropost.comments
+- @tags.each do |t|
+  = t.name
+%h3 Add a Comment:
+= render 'comments/form'
+- if micropost_from_current_user?(@micropost)
+  = link_to "edit", edit_micropost_path
+  = link_to "delete", micropost_path, method: :delete

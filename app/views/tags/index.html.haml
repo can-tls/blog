@@ -1,0 +1,5 @@
+- @tags.each do |tag|
+  %p
+    = link_to edit_tag_path(tag) do
+      = tag.name
+= link_to "new", new_tag_path
