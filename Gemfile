@@ -15,6 +15,7 @@ gem 'rubocop-faker', '~> 0.2.0'
 gem 'rspec-rails', '~> 4.0.0.beta4'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
+gem 'dotenv-rails'
 # Use Puma Webserver
 gem 'puma'
 # Use SCSS for stylesheets
