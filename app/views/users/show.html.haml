@@ -11,6 +11,8 @@
               
           
       
+- if @user.avatar.attached?
+  %image{src: "#{(url_for(@user.avatar))}"}
 %h3 created at:
 = @user.created_at
 %br/

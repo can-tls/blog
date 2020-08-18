@@ -15,11 +15,11 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
+        @user.defaultpw = SecureRandom.base64(12)
         if @user.save
           UserMailer.with(user: @user).welcome_email.deliver_now
-          log_in @user
-          flash[:success] = "Welcome to the Sample App!"
-          redirect_to @user
+          flash[:success] = "Welcome to the Sample App! Please check your E-Mail to verify your account"
+          redirect_to '/login'
         else
           flash.now[:danger] = 'please fill in all required fields'
           render 'new'
@@ -35,22 +35,42 @@ class UsersController < ApplicationController
     def edit
         @user = User.find(params[:id])
     end
+
+    def verification
+      @user = User.find(params[:id])
+      if @user.defaultpw == params[:defaultpw]
+        @user.update_attributes(user_params)
+        log_in @user
+        flash[:success] = "Welcome! you successfully verified your account"
+        redirect_to @user
+      else
+       # flash[:danger] = "the default-password is wrong"
+        render 'verification'
+      end
+    end
     
     def update
         @user = User.find(params[:id])
-        if @user.update_attributes(user_params)
-          flash[:success] = "Profile updated"
+        if @user.password != nil
+          flash[:danger] = "You already updated your password"
+          render 'verification'
+        elsif @user.defaultpw == params[:user][:defaultpw]
+          @user.update_attributes(user_params)
+          log_in @user
+          flash[:success] = "Welcome! you successfully verified your account"
           redirect_to @user
-          # Handle a successful update.
+        elsif @user.defaultpw != params[:user][:defaultpw]
+          flash[:danger] = "wrong defaultpw"
+          render 'verification'
         else
-          render 'edit' 
+          render 'about' 
         end
     end
 
     private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation) #confirmation entfernt
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar)
     end
 
     def logged_in_user

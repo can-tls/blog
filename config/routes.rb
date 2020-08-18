@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get  '/signup',  to: 'users#new'
   get 'login/new'
   get 'user/new'
+  get '/users/verification', to: 'users#verification'
   get '/show',     to: 'users#show'
   get '/show',     to: 'login#show'
   get '/all',      to: 'users#index'
