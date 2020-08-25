@@ -13,6 +13,7 @@ gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rubocop-faker', '~> 0.2.0'
 gem 'rspec-rails', '~> 4.0.0.beta4'
+gem 'aws-sdk', '~> 2'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 gem 'dotenv-rails'

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
     def show
       @user = User.find(params[:id])
       @microposts = @user.microposts
@@ -51,10 +52,10 @@ class UsersController < ApplicationController
     
     def update
         @user = User.find(params[:id])
-        if @user.password != nil
-          flash[:danger] = "You already updated your password"
-          render 'verification'
-        elsif @user.defaultpw == params[:user][:defaultpw]
+        if @user.avatar_url != params[:user][:avatar_url]
+          @user.update_attributes(user_params)
+          render 'show'
+        elsif @user.defaultpw == params[:user][:defaultpw] && @user.password != nil
           @user.update_attributes(user_params)
           log_in @user
           flash[:success] = "Welcome! you successfully verified your account"
@@ -65,12 +66,22 @@ class UsersController < ApplicationController
         else
           render 'about' 
         end
+
     end
 
     private
+    
+    def set_s3_direct_post
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+    end
+    
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar, :avatar_url)
     end
 
     def logged_in_user

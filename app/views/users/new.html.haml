@@ -2,9 +2,11 @@
 %h1 Sign up
 .row
   .col-md-6.col-md-offset-3
-    = form_for(@user, url: signup_path) do |f|
+    = form_for(@user, url: signup_path, html: { class: 'directUpload',  data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f|
       = render 'shared/error_messages', object: f.object
-      = f.label "Profile Photo"
+      = f.label :avatar_url
+      = f.file_field :avatar_url, class: 'field'
+      = f.label :avatar
       = f.file_field :avatar, class: 'form-control'
       = f.label :name
       = f.text_field :name, class: 'form-control'
