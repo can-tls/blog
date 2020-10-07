@@ -3,13 +3,17 @@ class MicropostsController < ApplicationController
     before_action :set_micropost, only: [:show, :edit, :update, :destroy]
     before_action :set_s3_direct_img, only: [:new, :edit, :create, :update]
   
-    def create    
-      @micropost = current_user.microposts.build(micropost_params)
-      if @micropost.save
-        flash[:success] = "Micropost created!"
-        redirect_to root_url #redircet to post 20.2.
+    def create
+      if params['updated_img'].present?
+        flash[:success] = "Bild aktualisiert"
       else
-        render 'static_pages/home'
+        @micropost = current_user.microposts.build(micropost_params)
+        if @micropost.save
+          flash[:success] = "Micropost created!"
+          redirect_to root_url #redircet to post 20.2.
+        else
+          render 'static_pages/home'
+        end
       end
     end
 

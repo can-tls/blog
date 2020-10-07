@@ -1,8 +1,14 @@
 = form_for(@micropost, html: { class: 'directUpload',  data: { 'form-data' => (@s3_direct_img.fields), 'url' => @s3_direct_img.url, 'host' => URI.parse(@s3_direct_img.url).host } }) do |f|
   = render 'shared/error_messages', object: f.object
   .field
-    = f.label :img_url
-    = f.file_field :img_url, class: 'field'
+    #tui
+    = hidden_field_tag 'updated_img'
+    = f.hidden_field :img_url, id:'hiddenfield'
     = f.text_area :titel, placeholder: "title..."
     = f.text_area :content, placeholder: "Compose new micropost..."
-  = f.submit "Post", class: "btn btn-primary"
+  = button_tag "Post", class: "btn btn-primary", id:'post-btn'
+
+-# %form#theForm{:enctype => "multipart/form-data", :method => "POST"}
+-#   %input#theFile{:name => "file", :type => "file"}/
+-#   %button#theButton{:type => "submit"} send 1
+
