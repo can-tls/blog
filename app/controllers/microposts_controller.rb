@@ -28,8 +28,7 @@ class MicropostsController < ApplicationController
 
     def index
       sort = params[:sort]
-      @microposts = Micropost.all.order(sort)
-      @tags = Tag.all
+      @microposts = Micropost.paginate(page: params[:page]).order(sort)
     end
 
     def edit

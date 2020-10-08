@@ -28,6 +28,7 @@
   %h4 Kommentare:
   - if micropost.comments.present?
     = micropost.comments.first.body
+= will_paginate(@microposts)
 - @microposts.each do |micropost|
   %hr/
   - micropost.comments.each do |comment|
