@@ -9,18 +9,11 @@ class LoginController < ApplicationController
   
   def create
     @user = User.find_by(email: params[:login][:email].downcase)
-    # password_equal = @user.password == params[:login][:password] 
-    # if user && user.authenticate(params[:login][:password])
-    #if @user.present?
     if @user.password == params[:login][:password]
-       log_in @user
-    #   params[:login][:remember_me] == '1' ? remember(@user) : nil #forget(@user)
-       redirect_to @user
-      
-      # Log the user in and redirect to the user's show page.
+      log_in @user
+      redirect_to @user
     else
-      # Create an error message.
-      flash.now[:danger] = 'Invalid email/password combination' # Not quite right!
+      flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
     end
   end
