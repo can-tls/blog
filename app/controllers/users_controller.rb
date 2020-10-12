@@ -40,33 +40,47 @@ class UsersController < ApplicationController
 
   def verification
     @user = User.find(params[:id])
-    if @user.defaultpw == params[:defaultpw]
-      @user.update_attributes(user_params)
-      log_in @user
-      flash[:success] = "Welcome! you successfully verified your account"
-      redirect_to @user
-    else
-      render 'verification'
-    end
-  end
-    
-  def update
-    @user = User.find(params[:id])
-    if @user.avatar_url != params[:user][:avatar_url]
-      @user.update_attributes(user_params)
-      render 'show'
-    elsif @user.defaultpw == params[:user][:defaultpw] && @user.password != nil
+    if @user.defaultpw == params[:defaultpw] && @user.password == nil
       @user.update_attributes(user_params)
       log_in @user
       flash[:success] = "Welcome! you successfully verified your account"
       redirect_to @user
     elsif @user.defaultpw != params[:user][:defaultpw]
+      binding.pry
       flash[:danger] = "wrong defaultpw"
       render 'verification'
     else
-      render 'about' 
+      flash[:danger] = "you already verified your account"
+      render 'about'
     end
   end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "updated profile"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+  # def update
+  #   @user = User.find(params[:id])
+  #   if @user.avatar_url != params[:user][:avatar_url]
+  #     @user.update_attributes(user_params)
+  #     render 'show'
+  #   elsif @user.defaultpw == params[:user][:defaultpw] && @user.password != nil
+  #     @user.update_attributes(user_params)
+  #     log_in @user
+  #     flash[:success] = "Welcome! you successfully verified your account"
+  #     redirect_to @user
+  #   elsif @user.defaultpw != params[:user][:defaultpw]
+  #     flash[:danger] = "wrong defaultpw"
+  #     render 'verification'
+  #   else
+  #     render 'about' 
+  #   end
+  # end
 
   private
 
