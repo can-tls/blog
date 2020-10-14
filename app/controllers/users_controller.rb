@@ -40,13 +40,13 @@ class UsersController < ApplicationController
       @user.update_attributes(user_params)
       flash[:success] = "hi"
       redirect_to @user
-    elsif @user.defaultpw_correct?(params[:user][:defaultpw]) && @user.password.nil?
+    elsif @user.defaultpw_valid?(params[:user][:defaultpw]) && @user.pw_not_set?
       @user.update_attributes(user_params)
       flash[:success] = "Welcome! you successfully verified your account"
       log_in @user
       redirect_to @user
-    elsif @user.defaultpw_wrong?(params[:user][:defaultpw])
-      flash[:danger] = "wrong defaultpw"
+    else
+      flash[:danger] = "wrong defaultpw or you verified already"
       render 'verification'
     end
   end

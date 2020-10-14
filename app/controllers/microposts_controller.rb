@@ -60,10 +60,8 @@ class MicropostsController < ApplicationController
       params.require(:sort)
     end
 
-    def  update_tags
-      unless params[:tag].present?
-        params.require(:tag)
-      end
+    def update_tags
+      params[:tag].present? ? params.require(:tag) : []
     end
 
     def micropost_params

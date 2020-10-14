@@ -7,10 +7,9 @@ class TagsController < ApplicationController
 
   def create
     @tag = Tag.create(tag_params)
-    if @tag.save
-      @tags = Tag.all
-      render 'index'
-    end
+    @tag.save
+    @tags = Tag.all
+    render 'index'
   end
 
   def edit
