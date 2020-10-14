@@ -33,3 +33,4 @@
   - micropost.comments.each do |comment|
     = link_to micropost_path(comment.micropost) do
       = render comment
+= will_paginate(@microposts)
