@@ -1,7 +1,7 @@
 class MicropostsController < ApplicationController
-    before_action :current_user, only: [:create, :destroy]
-    before_action :set_micropost, only: [:show, :edit, :update, :destroy]
-    before_action :set_s3_direct_img, only: [:new, :edit, :create, :update]
+  before_action :current_user, only: [:create, :destroy]
+  before_action :set_micropost, only: [:show, :edit, :update, :destroy]
+  before_action :set_s3_direct_img, only: [:new, :edit, :create, :update]
   
   def create
     if params['updated_img'].present?
@@ -22,25 +22,19 @@ class MicropostsController < ApplicationController
   end
 
   def show
-    @micropost = Micropost.find(params["id"])
     @tags = @micropost.tags
   end
 
   def index
     sort = params[:sort]
     @microposts = Micropost.all.order(sort)
-    @tags = Tag.all
   end
 
   def edit
-    @micropost = Micropost.find(params["id"])
-    @microposts = Micropost.all
     @tags = Tag.all
   end
 
   def update
-    @microposts = Micropost.all
-    @micropost = Micropost.find(params["id"])
     @tags = Tag.all
     @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
     redirect_to @micropost
@@ -48,7 +42,6 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
-    @micropost = Micropost.find(params["id"])
     @micropost.destroy
     redirect_to '/all'
   end
@@ -67,11 +60,9 @@ class MicropostsController < ApplicationController
       params.require(:sort)
     end
 
-    def update_tags (params[:tag].present?) #def update_tags(params[:tag].present?)
-      if params[:tag].present?              #  params.require(:tag)
-        params.require(:tag)                #end
-      else
-        []
+    def  update_tags
+      unless params[:tag].present?
+        params.require(:tag)
       end
     end
 

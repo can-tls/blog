@@ -25,7 +25,7 @@ class LoginController < ApplicationController
   
   private 
 
-  def login_params
-    params.require(:login).permit(:email, :password, :remember_me)
-  end
+    def login_params
+      params.require(:login).permit(:email, :password, :remember_me)
+    end
 end
