@@ -62,13 +62,13 @@ GEM
     autoprefixer-rails (9.8.5)
       execjs
     aws-eventstream (1.1.0)
-    aws-sdk (2.11.569)
-      aws-sdk-resources (= 2.11.569)
-    aws-sdk-core (2.11.569)
+    aws-sdk (2.11.611)
+      aws-sdk-resources (= 2.11.611)
+    aws-sdk-core (2.11.611)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.569)
-      aws-sdk-core (= 2.11.569)
+    aws-sdk-resources (2.11.611)
+      aws-sdk-core (= 2.11.611)
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bindex (0.8.1)
@@ -161,6 +161,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
     mimemagic (0.3.5)
+    mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
@@ -336,7 +337,7 @@ GEM
     websocket-driver (0.7.3-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    will_paginate (3.1.6)
+    will_paginate (3.1.7)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.0)
@@ -363,6 +364,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mini_magick
   pg
   pry-nav
   pry-rails
@@ -379,7 +381,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
-  will_paginate (= 3.1.6)
+  will_paginate (= 3.1.7)
 
 RUBY VERSION
    ruby 2.5.0p0

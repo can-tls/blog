@@ -1,3 +1,4 @@
+  
 require_relative 'boot'
 
 require 'rails/all'
@@ -8,6 +9,10 @@ Bundler.require(*Rails.groups)
 
 module BlogApp
   class Application < Rails::Application
+    config.action_dispatch.default_headers = {
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Request-Method' => 'GET, PATCH, PUT, POST, OPTIONS, DELETE'
+    }
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 

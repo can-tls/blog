@@ -1,48 +1,45 @@
 class TagsController < ApplicationController
-    def new
-        @tag = Tag.new
-    end   
+  before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  
+  def new
+    @tag = Tag.new
+  end   
 
-    def create
-        @tag = Tag.create(tag_params)
-        if @tag.save
-            @tags = Tag.all
-            render 'index'
-        end
-    end
+  def create
+    @tag = Tag.create(tag_params)
+    @tag.save
+    @tags = Tag.all
+    render 'index'
+  end
 
-    def edit
-        @tag = Tag.find(tag["id"])
-        @tags = Tag.all
-    end
+  def edit
+  end
 
-    def update
-        @tag = Tag.find(tag["id"])
-        @tag.update(tag_params)
-        redirect_to '/tags'
-        flash[:success] = "Tag updated"
-    end
+  def update
+    @tag.update(tag_params)
+    redirect_to '/tags'
+    flash[:success] = "Tag updated"
+  end
 
-    def destroy
-        @tag = Tag.find(params["id"])
-        @tag.destroy
-        redirect_to '/tags'
-    end
+  def destroy
+    @tag.destroy
+    redirect_to '/tags'
+  end
 
-    def show
-        @tag = Tag.find(params[:id])
-    end
+  def show
+  end
 
-    def index
-        @tags = Tag.all
-    end
+  def index
+    @tags = Tag.all
+  end
 
-    private
-    def tag
-        params.permit(:id, :name)
-    end
-
+  private
+  
     def tag_params
-        params.require(:tag).permit(:name, :id, :created_at, :updated_at, :micropost_id)
+      params.require(:tag).permit(:name, :id, :created_at, :updated_at, :micropost_id)
+    end
+
+    def set_tag
+      @tag = Tag.find(params["id"])
     end
 end
