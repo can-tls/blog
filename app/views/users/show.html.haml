@@ -1,4 +1,6 @@
 = provide(:title, @user.name)
+- if @user.avatar_url
+  = image_tag @user.avatar_url
 .row
   %aside.col-md-4
     %section.user_info

@@ -1,5 +1,5 @@
 %p
-- if @micropost.img_url
+- if @micropost.img_url.present?
   = image_tag @micropost.img_url
 %p
 %h4= @micropost.titel
