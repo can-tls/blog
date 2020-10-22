@@ -7,4 +7,10 @@ environment.plugins.append(
     jQuery: 'jquery',
   })
 )
+environment.config.merge({
+    externals: {
+      jquery: 'jQuery'
+    }
+  })
+    
 module.exports = environment
