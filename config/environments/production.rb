@@ -116,7 +116,7 @@ Rails.application.configure do
 
   config.action_mailer.preview_path = "app/spec/mailers/previews/user_mailer_preview.rb"
 
-  config.action_mailer.default_url_options = { host: 'young-chamber-46645.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'young-chamber-46645.herokuapp.com' }
 
   config.action_mailer.delivery_method = :smtp
 
@@ -125,7 +125,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "gmail.com",
+    domain: "young-chamber-46645.herokuapp.com",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_USERNAME"],
