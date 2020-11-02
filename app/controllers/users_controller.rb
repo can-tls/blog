@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.defaultpw = SecureRandom.base64(12)
     if @user.save
-      #UserMailer.with(user: @user).welcome_email.deliver_now
+      UserMailer.with(user: @user).welcome_email.deliver_now
       flash[:success] = "Welcome to the Sample App! Please check your E-Mail to verify your account"
       redirect_to '/login'
     else
