@@ -350,7 +350,7 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
-  aws-sdk (~> 3)
+  aws-sdk (~> 2)
   bootsnap (>= 1.4.2)
   bootstrap-sass (= 3.3.7)
   bootstrap-will_paginate (= 1.0.0)
