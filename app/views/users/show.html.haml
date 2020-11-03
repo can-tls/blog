@@ -1,11 +1,13 @@
 = provide(:title, @user.name)
+- if @user.avatar_url
+  = image_tag @user.avatar_url
 .row
   %aside.col-md-4
     %section.user_info
       %h1
         #{gravatar_for @user}
         #{@user.name}
-%h3 created at:
+%h3 created at:
 = @user.created_at
 %br/
 %br/

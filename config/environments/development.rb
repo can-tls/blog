@@ -63,7 +63,7 @@ Rails.application.configure do
 
   config.action_mailer.preview_path = "app/spec/mailers/previews/user_mailer_preview.rb"
 
-  config.action_mailer.default_url_options = { host: 'https://ancient-brushlands-24517.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://young-chamber-46645.herokuapp.com/' }
 
   config.action_mailer.delivery_method = :smtp
 

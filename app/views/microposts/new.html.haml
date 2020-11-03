@@ -1,9 +1,8 @@
-= form_for(@micropost, html: { class: 'directUpload',  data: { 'form-data' => (@s3_direct_img.fields), 'url' => @s3_direct_img.url, 'host' => URI.parse(@s3_direct_img.url).host } }) do |f|
+= form_for(@micropost, url: new_micropost_path, html: { class: 'directUpload',  data: { 'form-data' => (@s3_direct_img.fields), 'url' => @s3_direct_img.url, 'host' => URI.parse(@s3_direct_img.url).host } }) do |f|
   = render 'shared/error_messages', object: f.object
   .field
-    #tui
-    = hidden_field_tag 'updated_img'
-    = f.hidden_field :img_url, id:'hiddenfield'
+    = f.label :img
+    = f.file_field :img_url, class: 'field'
     = f.text_area :titel, placeholder: "title..."
     = f.text_area :content, placeholder: "Compose new micropost..."
   = button_tag "Post", class: "btn btn-primary", id:'post-btn'

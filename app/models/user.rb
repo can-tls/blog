@@ -17,11 +17,11 @@ class User < ApplicationRecord
     BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
-
-  def defaultpw_valid?(params)
+  
+  def defaultpw_valid?(params)  
     defaultpw == params
   end
-
+  
   def pw_not_set?
     password.nil?
   end
