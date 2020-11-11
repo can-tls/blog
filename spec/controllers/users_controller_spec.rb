@@ -23,5 +23,5 @@ RSpec.describe UsersController, :type => :controller do
   it "expects to redirect after login" do
     post :create, params: { user: { name: "Can Talas", email: "eliminator-44@hotmail.de", password: "hallo123"} }
     expect(subject).to redirect_to '/login'
-  end
+  end 
 end
