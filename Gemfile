@@ -12,7 +12,6 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rubocop-faker', '~> 0.2.0'
-gem 'rspec-rails', '~> 4.0.0.beta4'
 gem 'aws-sdk', '~> 2'
 gem 'mini_magick'
 # Use sqlite3 as the database for Active Record
@@ -43,6 +42,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
   gem 'pry-nav'
+  gem 'rspec-rails', '~> 4.0.1'
 end
 
 group :development do

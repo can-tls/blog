@@ -370,7 +370,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (~> 6.0.0)
-  rspec-rails (~> 4.0.0.beta4)
+  rspec-rails (~> 4.0.1)
   rubocop-faker (~> 0.2.0)
   sass-rails (~> 5)
   selenium-webdriver
