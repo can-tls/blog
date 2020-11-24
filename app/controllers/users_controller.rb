@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    p params
     @user = User.new(user_params)
     @user.defaultpw = SecureRandom.base64(12)
     if @user.save

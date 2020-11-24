@@ -16,12 +16,19 @@ RSpec.describe UsersController, :type => :controller do
   end
 
   it "expects not save user and flash danger" do
-    post :create, params: { user: { name: "Can Talas", passwword: "" } }
+    post :create, params: { user: { name: "Can Talas", password: "" } }
     expect(flash[:danger]).to be_present
   end
   
   it "expects to redirect after login" do
-    post :create, params: { user: { name: "Can Talas", email: "eliminator-44@hotmail.de", password: "hallo123"} }
+    user1 = create(:user)
+    post :create, params: user1
     expect(subject).to redirect_to '/login'
-  end 
+  end
+
+  # it "expect to verify user with flash" do
+  #   User.create
+  #   patch :update, params: { user: { name: "new Can Talas", email: "new-eliminator-44@hotmail.de", password: "new-hallo123"} }
+  #   expect(flash[:success]).to be_present
+  # end
 end

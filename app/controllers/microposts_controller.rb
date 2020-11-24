@@ -4,10 +4,11 @@ class MicropostsController < ApplicationController
   before_action :set_s3_direct_img, only: [:new, :edit, :create, :update]
   
   def create
+    p params
     if params['updated_img'].present?
       flash[:success] = "Bild aktualisiert"
     else
-      @micropost = current_user.microposts.build(micropost_params)
+      @micropost = current_user.microposts.build(micropost_params) #davor mit current_user
       if @micropost.save
         flash[:success] = "Micropost created!"
         redirect_to root_url
@@ -66,5 +67,9 @@ class MicropostsController < ApplicationController
 
     def micropost_params
       params.require(:micropost).permit(:titel, :content, :id, :user_id, :tag_id, :img_url)
+    end
+    
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar, :avatar_url, :id)
     end
 end
