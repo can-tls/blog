@@ -4,17 +4,12 @@ class MicropostsController < ApplicationController
   before_action :set_s3_direct_img, only: [:new, :edit, :create, :update]
   
   def create
-    p params
-    if params['updated_img'].present?
-      flash[:success] = "Bild aktualisiert"
+    @micropost = current_user.microposts.build(micropost_params)
+    if @micropost.save
+      flash[:success] = "Micropost created!"
+      redirect_to root_url
     else
-      @micropost = current_user.microposts.build(micropost_params) #davor mit current_user
-      if @micropost.save
-        flash[:success] = "Micropost created!"
-        redirect_to root_url
-      else
-        render 'static_pages/home'
-      end
+      render 'static_pages/home'
     end
   end
 
@@ -22,17 +17,9 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build if logged_in?
   end
 
-  def show
-    @tags = @micropost.tags
-  end
-
   def index
     sort = params[:sort]
     @microposts = Micropost.paginate(page: params[:page]).order(sort)
-  end
-
-  def edit
-    @tags = Tag.all
   end
 
   def update
@@ -43,6 +30,7 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
+    p params
     @micropost.destroy
     redirect_to '/all'
   end
