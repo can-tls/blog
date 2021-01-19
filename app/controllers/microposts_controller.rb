@@ -17,6 +17,10 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build if logged_in?
   end
 
+  def show
+    @tags = @micropost.tags
+  end
+
   def index
     sort = params[:sort]
     @microposts = Micropost.paginate(page: params[:page]).order(sort)

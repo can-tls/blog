@@ -38,9 +38,7 @@ RSpec.describe MicropostsController, :type => :controller do
     #   expect(flash[:danger]).to eq("Post updated")
     # end
     describe do
-    #   let (:micropost) { FactoryBot.create(:micropost) }
-      let! (:micropost) { Micropost.create(titel:"titel", content:"content", id: 1) }
-      before { @micropost = Micropost.new(titel:"titel", content:"content", id: 1) }
+      let (:micropost) { FactoryBot.build(:micropost) }
       it "should redirect after destroy" do
         delete :destroy, params: @micropost
         expect(subject).to redirect_to '/all'

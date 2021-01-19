@@ -22,7 +22,5 @@ class User < ApplicationRecord
     defaultpw == params
   end
   
-  def pw_not_set?
-    password.nil?
-  end
+#
 end

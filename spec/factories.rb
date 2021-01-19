@@ -3,11 +3,12 @@ FactoryBot.define do
     name { "Can Talas" }
     email {"eliminator-44@hotmail.de"}
     password {"hallo123"}
+    id {1}
   end
 
   factory :micropost do
     content { "content" }
-    email {"content"}
-    password {"hallo123"}
+    titel {"content"}
+    user_id {1}
   end
 end

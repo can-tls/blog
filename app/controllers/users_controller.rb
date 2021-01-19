@@ -28,6 +28,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def forgot_password
+    @user = User.find_by_email(params[:user][:email].downcase)
+    UserMailer.with(user: @user).forgot_password_email.deliver_now
+    flash[:success] = "Please check your E-Mail to reset your password"
+    redirect_to '/login'
+  end
+
+  def send_email
+  end
+
   def destroy
     @user.destroy
     render 'index'
@@ -37,11 +47,12 @@ class UsersController < ApplicationController
   end
   
   def update
+    p params
     if @user == current_user
       @user.update_attributes(user_params)
       flash[:success] = "hi"
       redirect_to @user
-    elsif @user.defaultpw_valid?(params[:user][:defaultpw]) && @user.pw_not_set?
+    elsif @user.defaultpw_valid?(params[:user][:defaultpw])
       @user.update_attributes(user_params)
       flash[:success] = "Welcome! you successfully verified your account"
       log_in @user
