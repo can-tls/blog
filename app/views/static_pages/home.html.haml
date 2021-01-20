@@ -3,8 +3,8 @@
     %aside.col-md-4
       %section.user_info
         = render 'shared/user_info'
-      %section.micropost_form
-        = render 'shared/micropost_form'
+      .center.jumbotron
+        = link_to "CREATE A POST", new_micropost_path
 - else
   %h1 Home
   .center.jumbotron

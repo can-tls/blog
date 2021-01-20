@@ -30,9 +30,14 @@ class UsersController < ApplicationController
 
   def forgot_password
     @user = User.find_by_email(params[:user][:email].downcase)
-    UserMailer.with(user: @user).forgot_password_email.deliver_now
-    flash[:success] = "Please check your E-Mail to reset your password"
-    redirect_to '/login'
+    if @user.present?
+      UserMailer.with(user: @user).forgot_password_email.deliver_now
+      flash[:success] = "Please check your E-Mail to reset your password"
+      redirect_to '/login'
+    else
+      redirect_to users_send_email_path
+      flash[:danger] = "this user doesn't exist"
+    end
   end
 
   def send_email
@@ -50,7 +55,7 @@ class UsersController < ApplicationController
     p params
     if @user == current_user
       @user.update_attributes(user_params)
-      flash[:success] = "hi"
+      flash[:success] = "updated user"
       redirect_to @user
     elsif @user.defaultpw_valid?(params[:user][:defaultpw])
       @user.update_attributes(user_params)
@@ -58,7 +63,7 @@ class UsersController < ApplicationController
       log_in @user
       redirect_to @user
     else
-      flash[:danger] = "wrong defaultpw or you verified already"
+      flash[:danger] = "wrong temporary password or you verified already"
       render 'verification'
     end
   end
