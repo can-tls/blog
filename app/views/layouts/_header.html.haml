@@ -1,5 +1,3 @@
-:javascript
-  import 'bootstrap/dist/js/bootstrap.bundle';
 %body
   %header.navbar.navbar-fixed-top.navbar-inverse
     .container
@@ -11,7 +9,7 @@
             %li= link_to "Tags",   tags_path
             %li= link_to "Users", all_path
             %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown"}
                 Account
                 %b.caret
               %ul.dropdown-menu
