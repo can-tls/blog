@@ -26,6 +26,10 @@ class MicropostsController < ApplicationController
     @microposts = Micropost.paginate(page: params[:page]).order(sort)
   end
 
+  def edit
+    @tags = Tag.all
+  end
+
   def update
     @tags = Tag.all
     @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
