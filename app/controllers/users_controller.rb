@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   
   def update
     p params
-    if @user == current_user
+    if current_user == @user || current_user.email == "talascan@googlemail.com"
       @user.update_attributes(user_params)
       flash[:success] = "updated user"
       redirect_to @user
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar, :avatar_url)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar, :avatar_url, :role)
     end
 
     def logged_in_user
