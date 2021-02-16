@@ -9,7 +9,7 @@ class User < ApplicationRecord
   format: { with: VALID_EMAIL_REGEX },
   uniqueness: { case_sensitive: false }
   # has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, if: lambda { new_record? || !password.blank? }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates_confirmation_of :password
 
   enum role: { admin: 0, user: nil }
