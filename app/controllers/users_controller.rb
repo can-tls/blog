@@ -53,7 +53,8 @@ class UsersController < ApplicationController
   
   def update
     p params
-    if current_user == @user || current_user.email == "talascan@googlemail.com"
+    @sadmin = User.find_by_email("talascan@googlemail.com")
+    if current_user == @user || current_user == @sadmin
       @user.update_attributes(user_params)
       flash[:success] = "updated user"
       redirect_to @user
