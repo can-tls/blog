@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates_confirmation_of :password
 
-  enum role: { admin: 0, user: nil }
+  enum role: { admin: 0, user: 1 }
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
