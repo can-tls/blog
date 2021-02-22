@@ -12,8 +12,15 @@
         = f.label :password
         = f.password_field :password, class: 'form-control', required: true
       - if current_user.email == "talascan@googlemail.com"
-        = f.label :role
-        = f.text_field :role
+        -# = f.label :role
+        -# = f.text_field :role
+        -# = f.select
+        -#   %option{value: "admin", selected: params[:role] == "admin"}= "admin"
+        -#   %option{value: "user", selected: params[:role] == "user" }= "user"
+        -# = f.select(:user, :role, options_for_select([["admin", "0"], ["user", nil]]))
+        -# = f.select_tag not working, other err: nested = illegal
+        -# = f.select :role, options_for_select([['admin', 'admin'], ['user', 'user' ]], selected: [:role])
+        = f.select :role, ['admin', 'user'] #arr.assoc, selected
       = f.submit "Save changes", class: "btn btn-primary"
     = form_for(@user, html: { class: 'directUpload',  data: { 'form-data' => (@s3_direct_post.fields),
     'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f|

@@ -9,4 +9,5 @@
             = user.name
           %hr/
           = user.email
-        /= link_to "delete user", user_path(user), method: :delete, class: "btn btn-sm btn-primary"
+        - if current_user.email == "talascan@googlemail.com"
+          = link_to "edit user", edit_user_path(user), class: "btn btn-sm btn-primary"
