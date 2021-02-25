@@ -20,10 +20,10 @@ class UsersController < ApplicationController
     @user.defaultpw = SecureRandom.base64(12)
     if @user.save
       UserMailer.with(user: @user).welcome_email.deliver_now
-      flash[:success] = "Welcome to the Sample App! Please check your E-Mail to verify your account"
+      flash[:success] = t(".welcome")
       redirect_to '/login'
     else
-      flash.now[:danger] = 'please fill in all required fields'
+      flash.now[:danger] = t(".fields")
       render 'new'
     end
   end
@@ -32,11 +32,11 @@ class UsersController < ApplicationController
     @user = User.find_by_email(params[:user][:email].downcase)
     if @user.present?
       UserMailer.with(user: @user).forgot_password_email.deliver_now
-      flash[:success] = "Please check your E-Mail to reset your password"
+      flash[:success] = t(".check")
       redirect_to '/login'
     else
       redirect_to users_send_email_path
-      flash[:danger] = "this user doesn't exist"
+      flash[:danger] = t(".exist")
     end
   end
 
@@ -56,15 +56,15 @@ class UsersController < ApplicationController
     @sadmin = User.find_by_email("talascan@googlemail.com")
     if current_user == @user || current_user == @sadmin
       @user.update_attributes(user_params)
-      flash[:success] = "updated user"
+      flash[:success] = t(".updated")
       redirect_to @user
     elsif @user.defaultpw_valid?(params[:user][:defaultpw])
       @user.update_attributes(user_params)
-      flash[:success] = "Welcome! you successfully verified your account"
+      flash[:success] = t(".welcome")
       log_in @user
       redirect_to @user
     else
-      flash[:danger] = "wrong temporary password or you verified already"
+      flash[:danger] = t(".wrong")
       render 'verification'
     end
   end
@@ -80,12 +80,12 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar, :avatar_url, :role)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar, :avatar_url, :role, :locale)
     end
 
     def logged_in_user
         unless logged_in?
-          flash[:danger] = "Please log in."
+          flash[:danger] = t(".please")
           redirect_to login_url
         end
     end

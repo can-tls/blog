@@ -14,11 +14,11 @@ class LoginController < ApplicationController
         log_in @user
         redirect_to @user
       else
-        flash.now[:danger] = 'Invalid email/password combination'
+        flash.now[:danger] = t('.invalid')
         render 'new'
       end
     else
-      flash.now[:danger] = 'please fill in the required information'
+      flash.now[:danger] = t('.information')
       render 'new'
     end
   end

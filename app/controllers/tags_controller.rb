@@ -15,7 +15,7 @@ class TagsController < ApplicationController
   def update
     @tag.update(tag_params)
     redirect_to '/tags'
-    flash[:success] = "Tag updated"
+    flash[:success] = t(".updated")
   end
 
   def destroy

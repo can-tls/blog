@@ -6,7 +6,7 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
-      flash[:success] = "Micropost created!"
+      flash[:success] = t(".create")
       redirect_to root_url
     else
       render 'static_pages/home'
@@ -34,7 +34,7 @@ class MicropostsController < ApplicationController
     @tags = Tag.all
     @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
     redirect_to @micropost
-    flash[:success] = "Post updated"
+    flash[:success] = t(".updated")
   end
 
   def destroy

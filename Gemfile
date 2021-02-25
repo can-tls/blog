@@ -7,6 +7,7 @@ ruby '2.5.0'
 gem 'rails', '~> 6.0.0'
 gem "haml-rails"
 gem "haml"
+gem 'rails-i18n'
 gem 'faker'
 gem 'bootstrap-sass', '3.3.7'
 gem 'will_paginate',           '3.1.7'

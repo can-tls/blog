@@ -1,9 +1,10 @@
 %p
 .row
   .col-md-12
-    = link_to "sort by author", microposts_path(:sort => "user_id"), :class=> "btn btn-primary btn-sm active"
-    = link_to "sort by publish", microposts_path(:sort => "created_at DESC"), :class=> "btn btn-primary btn-sm active"
-    = link_to "sort by update ", microposts_path(:sort => "updated_at DESC"), :class=> "btn btn-primary btn-sm active"
+    #{t (".sort")}
+    = link_to t(".author"), microposts_path(:sort => "user_id"), :class=> "btn btn-primary btn-sm active"
+    = link_to t(".publish"), microposts_path(:sort => "created_at DESC"), :class=> "btn btn-primary btn-sm active"
+    = link_to t(".update"), microposts_path(:sort => "updated_at DESC"), :class=> "btn btn-primary btn-sm active"
     .space1
 - @microposts.each do |micropost|
   .panel.panel-default
@@ -22,9 +23,9 @@
             %h4= sanitize(truncate(micropost.content, length: 20))
             - if micropost_from_current_user?(micropost)
               %hr/
-              = link_to "edit", edit_micropost_path(micropost)
-              = link_to "delete", micropost_path(micropost), method: :delete
-  %h4 Kommentare:
+              = link_to t(".edit"), edit_micropost_path(micropost)
+              = link_to t(".delete"), micropost_path(micropost), method: :delete
+  %h4 #{t (".comments")}
   - if micropost.comments.present?
     = micropost.comments.first.body
     .space1
