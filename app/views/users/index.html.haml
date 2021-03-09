@@ -10,4 +10,4 @@
           %hr/
           = user.email
         - if current_user.email == "talascan@googlemail.com"
-          = link_to "edit user", edit_user_path(user), class: "btn btn-sm btn-primary"
+          = link_to t(".edit"), edit_user_path(user), class: "btn btn-sm btn-primary"

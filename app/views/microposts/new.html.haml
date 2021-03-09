@@ -3,6 +3,7 @@
   .field
     = f.label :img
     = f.file_field :img_url, class: 'field'
+    .space2
     = f.text_area :titel, placeholder: "title...", required: true
     = f.text_area :content, placeholder: "Compose new micropost...", required: true
   = button_tag "Post", class: "btn btn-primary", id:'post-btn'

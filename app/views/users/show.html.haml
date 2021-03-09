@@ -14,7 +14,7 @@
 - @microposts.each do |micropost|
   %hr/
   %p
-    %b= "Datum:"
+    %b= t(".date")
     = micropost.created_at.strftime("%D")
     %br/
     = link_to micropost do
