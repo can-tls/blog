@@ -72,6 +72,7 @@ de:
       forgot_password: "Passwort vergessen?"
       new_user: "neu hier?"
       sign_up: "jetzt registrieren!"
+      remember: "mich auf diesem Gerät merken"
     create:
       invalid: "Invalide E-Mail/Passwort Kombination"
       information: "please fill in the required information"
@@ -93,12 +94,18 @@ de:
       updated: "Post bearbeitet!"
 
   shared:
+    error_messages:
+      form: "Das Formular beinhaltet"
+      error: "Fehler"
     user_info:
       view: "schau dir mein Profil an"
 
   static_pages:
     home:
+      home: "Start"
       create: "Erstelle ein Post"
+      sign_up: "Registrieren"
+      sign_in: "Anmelden"
     help:
       help: "Hilfe"
     contact:
@@ -118,11 +125,16 @@ de:
   users:
     index:
       edit: "Benutzer bearbeiten"
+    new:
+      create: "Benutzer erstellen"
+      register: "Registrieren"
     edit:
       update: "Bearbeite dein Profil"
       save: "Änderungen speichern"
       change: "avatar ändern"
       change2: "ändern"
+    send_email:
+      send: "Passwort zurücksetzen"
     show:
       date: "Datum:"
     create:

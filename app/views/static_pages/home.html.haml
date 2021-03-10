@@ -6,7 +6,7 @@
       .center.jumbotron
         = link_to t(".create"), new_micropost_path
 - else
-  %h1 Home
+  %h1 #{t (".home")}
   .center.jumbotron
-    = link_to "Sign up", signup_path, class: "btn btn-lg btn-primary"
-    = link_to "Sign in", login_path, class: "btn btn-lg btn-primary"
+    = link_to t(".sign_up"), signup_path, class: "btn btn-lg btn-primary"
+    = link_to t(".sign_in"), login_path, class: "btn btn-lg btn-primary"

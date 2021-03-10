@@ -15,6 +15,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rubocop-faker', '~> 0.2.0'
 gem 'aws-sdk', '~> 2'
 gem 'mini_magick'
+gem 'http_accept_language'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 gem 'dotenv-rails'
