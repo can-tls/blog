@@ -5,11 +5,11 @@
         %ul.nav.navbar-nav.navbar-right
           %li= link_to "Home",   root_path
           %li= link_to "Posts",  microposts_path
-          %li= link_to "Tags",   tags_path
           - if logged_in?
+            %li= link_to "Tags",   tags_path
             %li= link_to "Users", all_path
             %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown"}
                 Account
                 %b.caret
               %ul.dropdown-menu

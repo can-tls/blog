@@ -16,7 +16,7 @@ class Hash
   def stringify_keys!
     transform_keys!(&:to_s)
   end
-
+  
   # Returns a new hash with all keys converted to symbols, as long as
   # they respond to +to_sym+.
   #

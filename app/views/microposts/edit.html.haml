@@ -4,7 +4,7 @@
       = check_box_tag 'tag[]', tag.id, checked = @micropost.tags.include?(tag)
       = h tag.name
     .field
-      = f.text_area :titel, placeholder: "title..."
+      = f.text_area :titel, placeholder: "title...", required: true
     .field
-      = f.text_area :content, placeholder: "Compose new micropost..."
-    = f.submit "Update", class: "btn btn-primary"
+      = f.text_area :content, placeholder: "Compose new micropost...", required: true
+    = f.submit "update", class: "btn btn-primary"

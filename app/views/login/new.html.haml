@@ -10,5 +10,6 @@
         = f.check_box :remember_me
         %span Remember me on this computer
       = f.submit "Log in", class: "btn btn-primary"
+      = link_to "forgot password?", users_send_email_path
     %p
       New user? #{link_to "Sign up now!", signup_path}

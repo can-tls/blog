@@ -235,6 +235,11 @@ span.picture {
 }
 
 /* dunno man */
+.space1 { margin-top: 30px; }
+
+.space2 { margin-top: 60px; }
+
+.space3 { margin-top: 90px; }
 
 .field_with_errors {
   @extend .has-error;

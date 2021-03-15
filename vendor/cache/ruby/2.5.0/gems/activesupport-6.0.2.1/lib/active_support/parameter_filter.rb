@@ -11,7 +11,7 @@ module ActiveSupport
   # all sub-hashes are passed to it, where the value or the key can be replaced
   # using String#replace or similar methods.
   #
-  #   ActiveSupport::ParameterFilter.new([:password])
+  #   ActiveSupport::ParameterFilter.new([:password,:defaultpw])
   #   => replaces the value to all keys matching /password/i with "[FILTERED]"
   #
   #   ActiveSupport::ParameterFilter.new([:foo, "bar"])

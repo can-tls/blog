@@ -12,9 +12,6 @@ class TagsController < ApplicationController
     render 'index'
   end
 
-  def edit
-  end
-
   def update
     @tag.update(tag_params)
     redirect_to '/tags'
@@ -24,9 +21,6 @@ class TagsController < ApplicationController
   def destroy
     @tag.destroy
     redirect_to '/tags'
-  end
-
-  def show
   end
 
   def index
