@@ -1,6 +1,6 @@
 %section.tag_form
   = form_for(@tag) do |f|
     .field
-      = f.text_area :name, placeholder: "Compose new hashtag..."
-    = f.submit "Update", class: "btn btn-primary"
-= link_to "delete", tag_path(@tag), method: :delete
+      = f.text_area :name, placeholder: "Compose new hashtag...", required: true
+    = f.submit t(".update"), class: "btn btn-primary"
+= link_to t(".delete"), tag_path(@tag), method: :delete

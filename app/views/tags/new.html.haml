@@ -1,4 +1,4 @@
 = form_for(@tag) do |f|
   .field
-    = f.text_area :name
+    = f.text_area :name, required: true
   = f.submit "Set", class: "btn btn-primary"

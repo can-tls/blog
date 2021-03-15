@@ -4,16 +4,12 @@ class MicropostsController < ApplicationController
   before_action :set_s3_direct_img, only: [:new, :edit, :create, :update]
   
   def create
-    if params['updated_img'].present?
-      flash[:success] = "Bild aktualisiert"
+    @micropost = current_user.microposts.build(micropost_params)
+    if @micropost.save
+      flash[:success] = t(".create")
+      redirect_to root_url
     else
-      @micropost = current_user.microposts.build(micropost_params)
-      if @micropost.save
-        flash[:success] = "Micropost created!"
-        redirect_to root_url
-      else
-        render 'static_pages/home'
-      end
+      render 'static_pages/home'
     end
   end
 
@@ -38,10 +34,11 @@ class MicropostsController < ApplicationController
     @tags = Tag.all
     @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
     redirect_to @micropost
-    flash[:success] = "Post updated"
+    flash[:success] = t(".updated")
   end
 
   def destroy
+    p params
     @micropost.destroy
     redirect_to '/all'
   end
@@ -66,5 +63,9 @@ class MicropostsController < ApplicationController
 
     def micropost_params
       params.require(:micropost).permit(:titel, :content, :id, :user_id, :tag_id, :img_url)
+    end
+    
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar, :avatar_url, :id)
     end
 end

@@ -30,4 +30,122 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        name: "Name"
+        email: "E-Mail"
+        password: "Password"
+      comment:
+        name: "Name"
+        body: "Comment"
+      micropost:
+        img: "Image"
+
+  comments:
+    comment:
+      delete: "delete"
+    form:
+      name: "Name"
+      comment: "Comment"
+      add: "Add a Comment:"
+
+  layouts:
+    footer:
+      about: "About"
+      contact: "Contact"
+    header:
+      home: "Home"
+      posts: "Posts"
+      tags: "Tags"
+      users: "Users"
+      profile: "Profile"
+      settings: "Settings"
+      log_out: "Log out"
+      log_in: "Log in"
+      help: "Help"
+      account: "Account"
+
+  login:
+    new:
+      log_in: "sign in"
+      forgot_password: "forgot password?"
+      new_user: "new user?"
+      sign_up: "sign up now!"
+      remember: "remember me on this device"
+    create:
+      invalid: "Invalid email/password combination"
+      information: "please fill in the required information"
+    
+  microposts:
+    index:
+      sort: "sort by:"
+      author: "author"
+      publish: "published"
+      update: "updated"
+      edit: "edit"
+      delete: "delete"
+      comments: "comments:"
+    edit:
+      update: "update"
+    create:
+      create: "Post created!"
+    update:
+      updated: "Post updated!"
+
+  shared:
+    error_messages:
+      form: "The form contains"
+      error: "error"
+    user_info:
+      view: "view my profile"
+
+  static_pages:
+    home:
+      home: "Home"
+      create: "CREATE A POST"
+      sign_up: "Sign up"
+      sign_in: "Sign in"
+    help:
+      help: "Help"
+    contact:
+      contact: "Contact"
+    about:
+      about: "About"
+    
+  tags:
+    index:
+      new: "new"
+    edit:
+      update: "update"
+      delete: "delete"
+    update:
+      updated: "Tag updated"
+
+  users:
+    index:
+      edit: "edit user"
+    new:
+      create: "create my account"
+      register: "Sign up"
+    edit:
+      update: "Update your Profile"
+      save: "save changes"
+      change: "change avatar"
+      change2: "change"
+    send_email:
+      send: "send reset email"
+    show:
+      date: "Date:"
+    create:
+      fields: "please fill in all required fields"
+      welcome: "Welcome to the Sample App! Please check your E-Mail to verify your account"
+    forgot_password:
+      check: "Please check your E-Mail to reset your password"
+      exist: "this user doesn't exist"
+    update:
+      updated: "updated user"
+      welcome: "Welcome! you successfully verified your account"
+      wrong: "wrong temporary password or you verified already"
+    logged_in_user:
+      please: "Please log in."

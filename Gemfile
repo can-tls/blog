@@ -7,14 +7,15 @@ ruby '2.5.0'
 gem 'rails', '~> 6.0.0'
 gem "haml-rails"
 gem "haml"
+gem 'rails-i18n'
 gem 'faker'
 gem 'bootstrap-sass', '3.3.7'
 gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rubocop-faker', '~> 0.2.0'
-gem 'rspec-rails', '~> 4.0.0.beta4'
 gem 'aws-sdk', '~> 2'
 gem 'mini_magick'
+gem 'http_accept_language'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 gem 'dotenv-rails'
@@ -34,6 +35,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem 'rails_12factor', group: :production
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -43,6 +45,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
   gem 'pry-nav'
+  gem 'rspec-rails', '~> 4.0.1'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers', '~> 4.0'
+  gem 'guard-rspec', require: false
 end
 
 group :development do

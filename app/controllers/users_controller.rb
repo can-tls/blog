@@ -15,16 +15,32 @@ class UsersController < ApplicationController
   end
 
   def create
+    p params
     @user = User.new(user_params)
     @user.defaultpw = SecureRandom.base64(12)
     if @user.save
       UserMailer.with(user: @user).welcome_email.deliver_now
-      flash[:success] = "Welcome to the Sample App! Please check your E-Mail to verify your account"
+      flash[:success] = t(".welcome")
       redirect_to '/login'
     else
-      flash.now[:danger] = 'please fill in all required fields'
+      flash.now[:danger] = t(".fields")
       render 'new'
     end
+  end
+
+  def forgot_password
+    @user = User.find_by_email(params[:user][:email].downcase)
+    if @user.present?
+      UserMailer.with(user: @user).forgot_password_email.deliver_now
+      flash[:success] = t(".check")
+      redirect_to '/login'
+    else
+      redirect_to users_send_email_path
+      flash[:danger] = t(".exist")
+    end
+  end
+
+  def send_email
   end
 
   def destroy
@@ -36,17 +52,19 @@ class UsersController < ApplicationController
   end
   
   def update
-    if @user == current_user
+    p params
+    @sadmin = User.find_by_email("talascan@googlemail.com")
+    if current_user == @user || current_user == @sadmin
       @user.update_attributes(user_params)
-      flash[:success] = "hi"
+      flash[:success] = t(".updated")
       redirect_to @user
-    elsif @user.defaultpw_valid?(params[:user][:defaultpw]) && @user.pw_not_set?
+    elsif @user.defaultpw_valid?(params[:user][:defaultpw])
       @user.update_attributes(user_params)
-      flash[:success] = "Welcome! you successfully verified your account"
+      flash[:success] = t(".welcome")
       log_in @user
       redirect_to @user
     else
-      flash[:danger] = "wrong defaultpw or you verified already"
+      flash[:danger] = t(".wrong")
       render 'verification'
     end
   end
@@ -62,12 +80,12 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar, :avatar_url)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :defaultpw, :avatar, :avatar_url, :role, :locale)
     end
 
     def logged_in_user
         unless logged_in?
-          flash[:danger] = "Please log in."
+          flash[:danger] = t(".please")
           redirect_to login_url
         end
     end

@@ -8,8 +8,8 @@
     <p>
       You have successfully signed up to example.com,
       your username is: <%= @user.name %>.<br>
-      your default password is : <%= @user.defaultpw %> <br>
-      please follow this <%= link_to 'link', "http://localhost:3000/users/verification?id=#{@user[:id]}" %> and create a new password to verify your account. 
+      your temporary password is : <%= @user.defaultpw %> <br>
+      please follow this <%= link_to 'link', "#{ENV["DOMAIN_NAME"]}/users/verification?id=#{@user[:id]}" %> and create a new password to verify your account. 
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>

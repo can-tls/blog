@@ -12,21 +12,15 @@ class TagsController < ApplicationController
     render 'index'
   end
 
-  def edit
-  end
-
   def update
     @tag.update(tag_params)
     redirect_to '/tags'
-    flash[:success] = "Tag updated"
+    flash[:success] = t(".updated")
   end
 
   def destroy
     @tag.destroy
     redirect_to '/tags'
-  end
-
-  def show
   end
 
   def index

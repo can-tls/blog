@@ -1,0 +1,151 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+de:
+  activerecord:
+    attributes:
+      user:
+        name: "Name"
+        email: "E-Mail"
+        password: "Passwort"
+      comment:
+        name: "Name"
+        body: "Kommentar"
+      micropost:
+        img: "Bild"
+
+  comments:
+    comment:
+      delete: "löschen"
+    form:
+      name: "Name"
+      comment: "Kommentar"
+      add: "Füg einen Kommentar hinzu:"
+  
+  layouts:
+    footer:
+      about: "Über uns"
+      contact: "Kontakt"
+    header:
+      home: "Start"
+      posts: "Posts"
+      tags: "Tags"
+      users: "Benutzer"
+      profile: "Profil"
+      settings: "Einstellungen"
+      log_out: "Ausloggen"
+      log_in: "Einloggen"
+      help: "Hilfe"
+      account: "Konto"
+
+  login:
+    new:
+      log_in: "Anmelden"
+      forgot_password: "Passwort vergessen?"
+      new_user: "neu hier?"
+      sign_up: "jetzt registrieren!"
+      remember: "mich auf diesem Gerät merken"
+    create:
+      invalid: "Invalide E-Mail/Passwort Kombination"
+      information: "please fill in the required information"
+    
+  microposts:
+    index:
+      sort: "Sortieren nach:"
+      author: "Autor"
+      publish: "Veröffentlichung"
+      update: "Bearbeitet"
+      edit: "bearbeiten"
+      delete: "löschen"
+      comments: "Kommentare:"
+    edit:
+      update: "ändern"
+    create:
+      create: "Post erstellt!"
+    update:
+      updated: "Post bearbeitet!"
+
+  shared:
+    error_messages:
+      form: "Das Formular beinhaltet"
+      error: "Fehler"
+    user_info:
+      view: "schau dir mein Profil an"
+
+  static_pages:
+    home:
+      home: "Start"
+      create: "Erstelle ein Post"
+      sign_up: "Registrieren"
+      sign_in: "Anmelden"
+    help:
+      help: "Hilfe"
+    contact:
+      contact: "Kontakt"
+    about:
+      about: "Über uns"
+
+  tags:
+    index:
+      new: "neu"
+    edit:
+      update: "ändern"
+      delete: "löschen"
+    update:
+      updated: "Tag bearbeitet"
+
+  users:
+    index:
+      edit: "Benutzer bearbeiten"
+    new:
+      create: "Benutzer erstellen"
+      register: "Registrieren"
+    edit:
+      update: "Bearbeite dein Profil"
+      save: "Änderungen speichern"
+      change: "avatar ändern"
+      change2: "ändern"
+    send_email:
+      send: "Passwort zurücksetzen"
+    show:
+      date: "Datum:"
+    create:
+      fields: "Bitte füllen Sie alle freien Felder aus"
+      welcome: "Willkommen in der Beispiel App! Bitte überprüfen Sie Ihr E-Mail Postfach um ihr Konto zu verifizieren"
+    forgot_password:
+      check: "Bitte überprüfen Sie Ihr E-Mail Postfach um ihr Passwort zurück zu setzen"
+      exist: "Dieser Nutzer existiert nicht"
+    update:
+      updated: "Nutzer bearbeitet"
+      welcome: "Willkommen! Sie haben Sie haben ihr Konto erfolgreich verifiziert"
+      wrong: "falsches temporäres Passwort oder Sie sind bereits verifiziert"
+    logged_in_user:
+      please: "Bitte erst einloggen."

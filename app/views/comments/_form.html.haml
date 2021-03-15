@@ -1,10 +1,11 @@
+%h3 #{t (".add")}
 = form_for([@micropost,@micropost.comments.build]) do |f|
   %p
     = f.label :name
     = f.text_field :name
   %p
     = f.label :body
-    = f.text_area :body
+    = f.text_area :body, required: true
   %br/
   %p
     = f.submit
