@@ -72,6 +72,7 @@ en:
       forgot_password: "forgot password?"
       new_user: "new user?"
       sign_up: "sign up now!"
+      remember: "remember me on this device"
     create:
       invalid: "Invalid email/password combination"
       information: "please fill in the required information"
@@ -93,12 +94,18 @@ en:
       updated: "Post updated!"
 
   shared:
+    error_messages:
+      form: "The form contains"
+      error: "error"
     user_info:
       view: "view my profile"
 
   static_pages:
     home:
+      home: "Home"
       create: "CREATE A POST"
+      sign_up: "Sign up"
+      sign_in: "Sign in"
     help:
       help: "Help"
     contact:
@@ -118,11 +125,16 @@ en:
   users:
     index:
       edit: "edit user"
+    new:
+      create: "create my account"
+      register: "Sign up"
     edit:
       update: "Update your Profile"
       save: "save changes"
       change: "change avatar"
       change2: "change"
+    send_email:
+      send: "send reset email"
     show:
       date: "Date:"
     create:
