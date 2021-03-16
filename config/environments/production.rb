@@ -112,7 +112,7 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = true
 
@@ -125,12 +125,12 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "smtp.live.com",
     port: 587,
-    domain: "gmail.com",
+    domain: "hotmail.de",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: ENV["LIVE_USERNAME"],
+    password: ENV["LIVE_PASSWORD"]
   }
 end
