@@ -71,12 +71,12 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   
   config.action_mailer.smtp_settings = {
-    address: "smtp.live.com",
+    address: "smtp.sendgrid.net",
     port: 587,
-    domain: "hotmail.de",
+    domain: "infopark.de",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["LIVE_USERNAME"],
-    password: ENV["LIVE_PASSWORD"]
+    user_name: ENV["SENDGRID_USERNAME"],
+    password: ENV["SENDGRID_PASSWORD"]
   }
 end

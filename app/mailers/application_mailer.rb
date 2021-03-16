@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'eliminator-44@hotmail.de'
+  default from: 'can.talas@infopark.de'
   layout 'mailer'
 end
