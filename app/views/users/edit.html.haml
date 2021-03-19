@@ -8,6 +8,7 @@
       = f.text_field :name, class: 'form-control'
       = f.label :email
       = f.email_field :email, class: 'form-control'
+      = f.select :locale, ['en', 'de']
       - if @user == current_user
         = f.label :password
         = f.password_field :password, class: 'form-control', required: true

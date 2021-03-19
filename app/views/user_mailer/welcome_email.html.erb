@@ -4,12 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @user.name %></h1>
+    <h1>Welcome to my site, <%= @user.name %></h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @user.name %>.<br>
-      your temporary password is : <%= @user.defaultpw %> <br>
-      please follow this <%= link_to 'link', "#{ENV["DOMAIN_NAME"]}/users/verification?id=#{@user[:id]}" %> and create a new password to verify your account. 
+      You have successfully signed up.
+      Your username is: <%= @user.name %>.<br>
+      Your temporary password is : <%= @user.defaultpw %> <br>
+      Please follow this <%= link_to 'link', "#{ENV["DOMAIN_NAME"]}/users/verification?id=#{@user[:id]}" %> and create a new password to verify your account. 
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>

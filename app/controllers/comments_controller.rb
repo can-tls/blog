@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
-  
+  def new
+    @name = current_user.name
+    binding.pry
+  end
+
   def create
     @micropost = Micropost.find(params[:micropost_id])
     @comment = @micropost.comments.create(comment_params)
