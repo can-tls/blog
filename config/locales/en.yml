@@ -92,6 +92,7 @@ en:
       create: "Post created!"
     update:
       updated: "Post updated!"
+      not: "you are not the author of this article"
 
   shared:
     error_messages:
