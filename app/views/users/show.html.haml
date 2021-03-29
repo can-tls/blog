@@ -8,7 +8,7 @@
         #{gravatar_for @user}
         #{@user.name}
 %h3 created at:
-= @user.created_at
+= @user.created_at.strftime("%D")
 %br/
 %br/
 - @microposts.each do |micropost|

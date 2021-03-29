@@ -25,5 +25,6 @@ end
         name: Faker::Name.name,
         body: Faker::Lorem.sentence(word_count: 5),
         micropost_id: Faker::Number.between(from: 1, to: 100),
+        user_id: Faker::Number.between(from: 1, to: 100),
     )
 end

@@ -19,6 +19,11 @@ class MicropostsController < ApplicationController
 
   def show
     @tags = @micropost.tags
+    if current_user.present?
+      @comments = Comment.new(name: current_user.name, user_id: current_user.id)#(name: @micropost.current_user_name, user_id: current_user_id)
+    else
+      @comments = Comment.new
+    end
   end
 
   def index
@@ -32,9 +37,13 @@ class MicropostsController < ApplicationController
 
   def update
     @tags = Tag.all
-    @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
+    if current_user == @micropost.user
+      @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
+      flash[:success] = t(".updated")
+    else
+      flash[:danger] = t(".not")
+    end
     redirect_to @micropost
-    flash[:success] = t(".updated")
   end
 
   def destroy

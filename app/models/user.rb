@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :avatar
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
@@ -23,6 +24,5 @@ class User < ApplicationRecord
   def defaultpw_valid?(params)  
     defaultpw == params
   end
-  
-#
+
 end

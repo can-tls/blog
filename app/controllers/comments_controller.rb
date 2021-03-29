@@ -1,8 +1,4 @@
 class CommentsController < ApplicationController
-  def new
-    @name = current_user.name
-    binding.pry
-  end
 
   def create
     @micropost = Micropost.find(params[:micropost_id])
@@ -20,6 +16,6 @@ class CommentsController < ApplicationController
     private
   
       def comment_params
-        params.require(:comment).permit(:name, :body)
+        params.require(:comment).permit(:name, :body, :user_id)
       end
 end

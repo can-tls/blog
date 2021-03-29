@@ -25,13 +25,7 @@
               %hr/
               = link_to t(".edit"), edit_micropost_path(micropost)
               = link_to t(".delete"), micropost_path(micropost), method: :delete
-  %h4 #{t (".comments")}
   - if micropost.comments.present?
+    %h4 #{t (".comments")}
     = micropost.comments.first.body
     .space1
--# - @microposts.each do |micropost|
--#   %hr/
--#   - micropost.comments.each do |comment|
--#     = link_to micropost_path(comment.micropost) do
--#       = render comment
--# = will_paginate(@microposts)
