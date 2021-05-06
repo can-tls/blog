@@ -5,6 +5,9 @@
     = link_to t(".author"), microposts_path(:sort => "user_id"), :class=> "btn btn-primary btn-sm active"
     = link_to t(".publish"), microposts_path(:sort => "created_at DESC"), :class=> "btn btn-primary btn-sm active"
     = link_to t(".update"), microposts_path(:sort => "updated_at DESC"), :class=> "btn btn-primary btn-sm active"
+    -# - @tags.each do |tag|
+    -#   %p
+    -#     = link_to tag.name microposts_path(:sort => "tag.name"), :class=> "btn btn-primary btn-sm active"
     .space1
 - @microposts.each do |micropost|
   .panel.panel-default

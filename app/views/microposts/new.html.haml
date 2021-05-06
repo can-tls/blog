@@ -2,7 +2,7 @@
   = render 'shared/error_messages', object: f.object
   .field
     = f.label :img
-    = f.file_field :img_url, class: 'field'
+    = f.file_field :img_url, class: 'field', accept:'image/*'
     .space2
     = f.text_area :titel, placeholder: "title...", required: true
     = f.text_area :content, placeholder: "Compose new micropost...", required: true

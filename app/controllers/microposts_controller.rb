@@ -2,6 +2,7 @@ class MicropostsController < ApplicationController
   before_action :current_user, only: [:create, :destroy]
   before_action :set_micropost, only: [:show, :edit, :update, :destroy]
   before_action :set_s3_direct_img, only: [:new, :edit, :create, :update]
+  before_action :set_tag, only: [:index, :edit, :update]
   
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -20,9 +21,9 @@ class MicropostsController < ApplicationController
   def show
     @tags = @micropost.tags
     if current_user.present?
-      @comments = Comment.new(name: current_user.name, user_id: current_user.id)#(name: @micropost.current_user_name, user_id: current_user_id)
+      @comment = Comment.new(name: current_user.name, user_id: current_user.id)
     else
-      @comments = Comment.new
+      @comment = Comment.new
     end
   end
 
@@ -32,11 +33,13 @@ class MicropostsController < ApplicationController
   end
 
   def edit
-    @tags = Tag.all
+    if @micropost.user != current_user
+      redirect_to @micropost
+      flash[:danger] = t(".not")
+    end
   end
 
   def update
-    @tags = Tag.all
     if current_user == @micropost.user
       @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
       flash[:success] = t(".updated")
@@ -47,7 +50,6 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
-    p params
     @micropost.destroy
     redirect_to '/all'
   end
@@ -60,6 +62,10 @@ class MicropostsController < ApplicationController
 
     def set_micropost
       @micropost = Micropost.find(params[:id])
+    end
+
+    def set_tag
+      @tags = Tag.all
     end
 
     def sorting

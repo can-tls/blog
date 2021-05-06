@@ -1,13 +1,16 @@
 %h3 #{t (".add")}
-= form_for([@micropost, @comments]) do |f|
-  %p
-    = f.label :name
-    = f.text_field :name
+= form_for([@micropost, @comment]) do |f|
+  - if current_user.present?
+    = f.hidden_field :name
+    = f.hidden_field :user_id
+  - else
+    %p
+      = f.label :name
+      = f.text_field :name
+      = f.hidden_field :user_id, value: '207'
   %p
     = f.label :body
     = f.text_area :body, required: true
-  %p
-    = f.hidden_field :user_id
   %br/
   %p
     = f.submit

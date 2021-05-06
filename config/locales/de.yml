@@ -88,11 +88,11 @@ de:
       comments: "Kommentare:"
     edit:
       update: "ändern"
+      not: "Sie sind nicht der Autor des Posts"
     create:
       create: "Post erstellt!"
     update:
       updated: "Post bearbeitet!"
-      not: "Sie sind nicht der Autor des Posts"
 
   shared:
     error_messages:
