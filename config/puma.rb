@@ -31,7 +31,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # processes).
 #
 # workers ENV.fetch("WEB_CONCURRENCY") { 2 }
-workers Integer(ENV['WEB_CONCURRENCY'] || 1)
+# workers Integer(ENV['WEB_CONCURRENCY'] || 1)   #auskommentiert wegen Platform-switch-error os->win
 
 on_worker_boot do
     # Worker specific setup for Rails 4.1+
