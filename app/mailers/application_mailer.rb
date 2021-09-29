@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'can.talas@infopark.de'
+  default from: 'talascan@googlemail.com'
   layout 'mailer'
 end
