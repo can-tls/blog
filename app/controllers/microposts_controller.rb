@@ -29,7 +29,7 @@ class MicropostsController < ApplicationController
 
   def index
     sort = params[:sort]
-    @microposts = Micropost.paginate(page: params[:page]).order(sort)
+    @microposts = Micropost.paginate(page: params[:page]).order(sort).search_micropost(params[:search])
   end
 
   def edit
@@ -71,13 +71,13 @@ class MicropostsController < ApplicationController
     def sorting
       params.require(:sort)
     end
-
+    
     def update_tags
       params[:tag].present? ? params.require(:tag) : []
     end
 
     def micropost_params
-      params.require(:micropost).permit(:titel, :content, :id, :user_id, :tag_id, :img_url)
+      params.require(:micropost).permit(:titel, :content, :id, :user_id, :tag_id, :img_url, :search)
     end
     
     def user_params

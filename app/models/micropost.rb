@@ -1,4 +1,7 @@
 class Micropost < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_micropost, against: %i[titel content]
+
   has_many :taggings, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
