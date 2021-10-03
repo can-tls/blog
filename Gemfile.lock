@@ -1345,6 +1345,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.4.0)
     regexp_parser (1.7.1)
     rexml (3.2.4)
     rspec (3.9.0)
@@ -1490,6 +1491,7 @@ DEPENDENCIES
   rails (~> 6.0.0)
   rails-i18n
   rails_12factor
+  redis (~> 4.0)
   rspec-rails (~> 4.0.1)
   rubocop-faker (~> 0.2.0)
   sass-rails (~> 5)

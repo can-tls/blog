@@ -42,6 +42,7 @@ class MicropostsController < ApplicationController
   def update
     if current_user == @micropost.user
       @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
+      ActionCable.server.broadcast "microposts_channel_#{@micropost.id}", @micropost
       flash[:success] = t(".updated")
     else
       flash[:danger] = t(".not")
