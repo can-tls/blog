@@ -1,9 +1,10 @@
 - if @micropost.img_url.present?
   = image_tag @micropost.img_url
 %p
-%h4= @micropost.titel
+#micropost-id{"data-micropost-id" => "#{@micropost.id}"}
+%h4#titel= @micropost.titel
 %br/
-= @micropost.content
+#content= @micropost.content
 %hr/
 = render @micropost.comments
 - @tags.each do |t|
