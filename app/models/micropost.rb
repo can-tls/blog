@@ -28,17 +28,4 @@ class Micropost < ApplicationRecord
       @comments = Comment.new(name: current_user.name, user_id: current_user.id)
     end
   end
-
-  def self.search(search)
-    if search
-      micropost = Micropost.find_by(name: search)
-      if micropost
-        self.where(micropost_id: micropost)
-      else
-        Micropost.all
-      end
-    else
-      Micropost.all
-    end
-  end
 end
