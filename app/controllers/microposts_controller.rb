@@ -29,7 +29,11 @@ class MicropostsController < ApplicationController
 
   def index
     sort = params[:sort]
-    @microposts = Micropost.paginate(page: params[:page]).order(sort).search_micropost(params[:search])
+    if params[:search] == nil
+      @microposts = Micropost.page(params[:page]).order(sort)
+    else
+      @microposts = Micropost.search_micropost(params[:search]).page(params[:page])
+    end
   end
 
   def edit

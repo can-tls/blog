@@ -6,7 +6,7 @@ class Micropost < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
   belongs_to :user
-  self.per_page = 10
+
   validates :user_id, presence: true
   validates :titel,   presence: true, length: { maximum: 40 }
   validates :content, presence: true, length: { maximum: 140 }
@@ -26,6 +26,19 @@ class Micropost < ApplicationRecord
   def online_user_comment
     if current_user.present?
       @comments = Comment.new(name: current_user.name, user_id: current_user.id)
+    end
+  end
+
+  def self.search(search)
+    if search
+      micropost = Micropost.find_by(name: search)
+      if micropost
+        self.where(micropost_id: micropost)
+      else
+        Micropost.all
+      end
+    else
+      Micropost.all
     end
   end
 end
