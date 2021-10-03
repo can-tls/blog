@@ -1,9 +1,12 @@
 class Micropost < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_micropost, against: %i[titel content]
+
   has_many :taggings, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
   belongs_to :user
-  self.per_page = 10
+
   validates :user_id, presence: true
   validates :titel,   presence: true, length: { maximum: 40 }
   validates :content, presence: true, length: { maximum: 140 }
