@@ -8,12 +8,18 @@
     -# - @tags.each do |tag|
     -#   %p
     -#     = link_to tag.name microposts_path(:sort => "tag.name"), :class=> "btn btn-primary btn-sm active"
+    #microposts-index{"data-microposts-index" => "index"}
     .space1
     = form_tag(microposts_path, method: :get) do
       = text_field_tag(:search, params[:search])
       = submit_tag ("Search")
     = @microposts.count
     = t(".found")
+%p#new
+  = if @micropost.present?
+    = "NEW POST:"
+    = link_to @micropost do
+      = @micropost.titel
 - @microposts.each do |micropost|
   .panel.panel-default
     .panel-body
