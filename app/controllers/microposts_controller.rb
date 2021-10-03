@@ -29,7 +29,11 @@ class MicropostsController < ApplicationController
 
   def index
     sort = params[:sort]
-    @microposts = Micropost.paginate(page: params[:page]).order(sort)
+    if params[:search] == nil
+      @microposts = Micropost.page(params[:page]).order(sort)
+    else
+      @microposts = Micropost.search_micropost(params[:search]).page(params[:page])
+    end
   end
 
   def edit
@@ -42,6 +46,7 @@ class MicropostsController < ApplicationController
   def update
     if current_user == @micropost.user
       @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
+      ActionCable.server.broadcast "microposts_channel_#{@micropost.id}", @micropost
       flash[:success] = t(".updated")
     else
       flash[:danger] = t(".not")
@@ -71,13 +76,13 @@ class MicropostsController < ApplicationController
     def sorting
       params.require(:sort)
     end
-
+    
     def update_tags
       params[:tag].present? ? params.require(:tag) : []
     end
 
     def micropost_params
-      params.require(:micropost).permit(:titel, :content, :id, :user_id, :tag_id, :img_url)
+      params.require(:micropost).permit(:titel, :content, :id, :user_id, :tag_id, :img_url, :search)
     end
     
     def user_params

@@ -9,6 +9,11 @@
     -#   %p
     -#     = link_to tag.name microposts_path(:sort => "tag.name"), :class=> "btn btn-primary btn-sm active"
     .space1
+    = form_tag(microposts_path, method: :get) do
+      = text_field_tag(:search, params[:search])
+      = submit_tag ("Search")
+    = @microposts.count
+    = t(".found")
 - @microposts.each do |micropost|
   .panel.panel-default
     .panel-body
@@ -32,3 +37,4 @@
     %h4 #{t (".comments")}
     = micropost.comments.first.body
     .space1
+= paginate @microposts
