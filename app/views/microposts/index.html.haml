@@ -13,7 +13,7 @@
     = form_tag(microposts_path, method: :get) do
       = text_field_tag(:search, params[:search])
       = submit_tag ("Search")
-    = @microposts.count
+    /= @microposts.count
     = t(".found")
 %p#new
   = if @micropost.present?
@@ -22,7 +22,7 @@
       = @micropost.titel
 - @microposts.each do |micropost|
   .panel.panel-default
-    .panel-body
+    .panel-body  
       = gravatar_for micropost.user
       .col-md-6
         = link_to micropost.user do

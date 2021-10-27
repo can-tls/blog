@@ -21,7 +21,7 @@ document.addEventListener('turbolinks:load', () => {
       console.log(data);
       console.log("jnlk");
       var titel = document.getElementsById("titel") ;
-      titel.innerHTML = titel.innerHTML.replace( "@micropost.titel",'data.titel') ;
+      titel.innerHTML = titel.innerHTML.replace( @micropost.titel, data.titel) ;
       // Called when there's incoming data on the websocket for this channel
     }
   });
