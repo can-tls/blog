@@ -20,7 +20,6 @@ class UsersController < ApplicationController
     @user.defaultpw = SecureRandom.base64(12)
     if @user.save
       UserMailer.with(user: @user).welcome_email.deliver_now
-      binding.pry
       flash[:success] = t(".welcome")
       redirect_to '/login'
     else
