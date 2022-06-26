@@ -17,7 +17,6 @@ gem 'aws-sdk', '~> 3'
 gem 'pg_search', '~> 2.3', '>= 2.3.2'
 gem 'mini_magick'
 gem 'http_accept_language'
-gem 'wdm', '>= 0.1.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 gem 'dotenv-rails'
@@ -76,3 +75,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+platforms :mswin do
+  gem 'wdm', '>= 0.1.0', :group => [:development, :test]
+end
