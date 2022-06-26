@@ -8,6 +8,7 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = t(".create")
+      ActionCable.server.broadcast "microposts_index_channel", @micropost
       redirect_to root_url
     else
       render 'static_pages/home'
