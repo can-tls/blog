@@ -8,6 +8,7 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = t(".create")
+      ActionCable.server.broadcast "microposts_index_channel", @micropost
       redirect_to root_url
     else
       render 'static_pages/home'
@@ -29,7 +30,11 @@ class MicropostsController < ApplicationController
 
   def index
     sort = params[:sort]
-    @microposts = Micropost.paginate(page: params[:page]).order(sort).search_micropost(params[:search])
+    if params[:search] == nil
+      @microposts = Micropost.page(params[:page]).order(sort)
+    else
+      @microposts = Micropost.search_micropost(params[:search]).page(params[:page])
+    end
   end
 
   def edit
@@ -42,6 +47,7 @@ class MicropostsController < ApplicationController
   def update
     if current_user == @micropost.user
       @micropost.update(micropost_params.merge({tags: Tag.find(update_tags)}))
+      ActionCable.server.broadcast "microposts_channel_#{@micropost.id}", @micropost
       flash[:success] = t(".updated")
     else
       flash[:danger] = t(".not")
